@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { AssimilatedAsset, JobStatus, ProductionJob, StrategicDirective } from '../types';
 import { assimilateContentFromUrl } from '../services/geminiService';
@@ -29,6 +29,7 @@ const AssimilationProgress: React.FC<{ progress: number }> = ({ progress }) => {
     );
 };
 
+const URL_REGEX = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
 
 export const CommandNexus: React.FC = () => {
     const { t, language } = useTranslation();
@@ -46,6 +47,8 @@ export const CommandNexus: React.FC = () => {
     const [assimilatedAsset, setAssimilatedAsset] = useState<AssimilatedAsset | null>(null);
     const [assimilationError, setAssimilationError] = useState<string | null>(null);
 
+    const isUrlValid = useMemo(() => URL_REGEX.test(urlInput), [urlInput]);
+
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
@@ -53,7 +56,7 @@ export const CommandNexus: React.FC = () => {
     useEffect(scrollToBottom, [messages]);
 
     const handleAssimilate = async () => {
-        if (!urlInput.trim() || isAssimilating) return;
+        if (!urlInput.trim() || isAssimilating || !isUrlValid) return;
         setIsAssimilating(true);
         setAssimilatedAsset(null);
         setAssimilationError(null);
@@ -182,7 +185,7 @@ export const CommandNexus: React.FC = () => {
                     />
                     <button
                         onClick={handleAssimilate}
-                        disabled={isAssimilating || !urlInput.trim()}
+                        disabled={isAssimilating || !isUrlValid}
                         className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-md transition-all disabled:bg-gray-600 disabled:cursor-not-allowed"
                     >
                         {isAssimilating ? t('commandNexus.assimilatingButton') : t('commandNexus.assimilateButton')}

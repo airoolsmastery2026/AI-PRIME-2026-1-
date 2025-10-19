@@ -1,16 +1,61 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import serviceCode from '../services/geminiService.ts?raw';
 
+declare const monaco: any;
+
 export const CoreEditor: React.FC = () => {
     const { t } = useTranslation();
+    const editorRef = useRef<HTMLDivElement>(null);
     const [code, setCode] = useState<string>('// Loading Core Logic...');
     const [isSaving, setIsSaving] = useState<boolean>(false);
+    const editorInstance = useRef<any>(null);
 
     useEffect(() => {
-        // The raw import is handled by Vite during build, so 'serviceCode' is a string.
+        // Set code from the raw import
         setCode(serviceCode);
     }, []);
+
+    useEffect(() => {
+        if (editorRef.current && typeof monaco !== 'undefined') {
+            // Ensure monaco is loaded
+            if (!editorInstance.current) {
+                (window as any).require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' }});
+                (window as any).require(['vs/editor/editor.main'], () => {
+                     editorInstance.current = monaco.editor.create(editorRef.current!, {
+                        value: code,
+                        language: 'typescript',
+                        theme: 'vs-dark',
+                        automaticLayout: true,
+                        minimap: { enabled: false },
+                        scrollbar: {
+                           verticalScrollbarSize: 8,
+                           horizontalScrollbarSize: 8,
+                        },
+                        background: '#101014'
+                    });
+
+                    // Update state when editor content changes
+                    editorInstance.current.getModel().onDidChangeContent(() => {
+                        setCode(editorInstance.current.getModel().getValue());
+                    });
+                });
+            } else {
+                 // If editor already exists, just update its value
+                 if(editorInstance.current.getModel().getValue() !== code) {
+                    editorInstance.current.getModel().setValue(code);
+                 }
+            }
+        }
+        
+        return () => {
+            // Dispose editor instance on component unmount
+            if(editorInstance.current) {
+                editorInstance.current.dispose();
+                editorInstance.current = null;
+            }
+        };
+    }, [code]); // Re-run effect if initial code changes
 
     const handleSave = () => {
         setIsSaving(true);
@@ -19,6 +64,7 @@ export const CoreEditor: React.FC = () => {
         setTimeout(() => {
             setIsSaving(false);
             // In a real backend scenario, this would trigger a server-side process.
+            // For now, it's a simulation to show functionality.
             alert("Core logic saved. In a real backend environment, this would be recompiled and deployed.");
         }, 1500);
     };
@@ -30,12 +76,7 @@ export const CoreEditor: React.FC = () => {
                 <p className="text-gray-400 max-w-3xl mx-auto">{t('coreEditor.description')}</p>
             </header>
             <div className="hud-border flex-grow flex flex-col p-1">
-                 <textarea
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    spellCheck={false}
-                    className="w-full h-full bg-[#101014] text-gray-300 font-mono text-sm p-4 border-none focus:ring-0 focus:outline-none resize-none rounded-sm"
-                 />
+                 <div ref={editorRef} className="w-full h-full"></div>
             </div>
             <div className="flex-shrink-0 mt-4 flex justify-end">
                 <button

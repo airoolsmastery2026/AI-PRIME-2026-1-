@@ -74,5 +74,3 @@ self.addEventListener('activate', (event: any) => {
     })
   );
 });
-
-export {};
