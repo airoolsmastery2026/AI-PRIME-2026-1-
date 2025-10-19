@@ -4,6 +4,7 @@ import { useSystem } from '../contexts/SystemContext';
 import { SystemBackup } from '../types';
 import { DownloadIcon } from './icons/DownloadIcon';
 import { UploadIcon } from './icons/UploadIcon';
+import { APISettings } from './APISettings';
 
 export const Settings: React.FC = () => {
     const { t } = useTranslation();
@@ -112,6 +113,7 @@ export const Settings: React.FC = () => {
                              <p className="text-xs text-red-400 mt-3 font-semibold">{t('settings.dataManagement.import.warning')}</p>
                         </div>
                     </div>
+                    <APISettings />
                 </div>
             </div>
         </div>

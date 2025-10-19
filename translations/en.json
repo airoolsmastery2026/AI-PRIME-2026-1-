@@ -387,6 +387,11 @@
             "success": "Backup restored successfully. The application will now reload.",
             "error": "Failed to import backup. The file may be invalid or corrupted."
         }
+    },
+    "apiManagement": {
+        "title": "API Key Management",
+        "description": "For security, your Gemini API Key must be configured as an environment variable named `API_KEY` in your Vercel project settings. The application reads this key on the server-side, ensuring it is never exposed to the browser.",
+        "button": "Vercel Env Var Docs"
     }
   },
   "coreEditor": {

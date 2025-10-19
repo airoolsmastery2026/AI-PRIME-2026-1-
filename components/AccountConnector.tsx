@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { CloseIcon } from './icons/CloseIcon';
 import { CHANNEL_TOPICS } from '../data/topics';
@@ -121,6 +121,15 @@ export const AccountConnector: React.FC<{
     const isSocial = socialPlatforms.includes(platform as SocialPlatform);
     const isAffiliate = generalAffiliatePlatforms.includes(platform as any) || cryptoAffiliatePlatforms.includes(platform as any);
 
+    const isFormValid = useMemo(() => {
+        if (!formData.username.trim()) return false;
+        if (isSocial) {
+            const socialData = formData as SocialAccount;
+            return !!socialData.category && !!socialData.country.trim();
+        }
+        return true;
+    }, [formData, isSocial]);
+
     const getPlatformLabels = () => {
         let usernameLabel = t('accounts.connector.usernameIdLabel');
         let passwordLabel = t('accounts.connector.apiKeyLabel');
@@ -230,7 +239,11 @@ export const AccountConnector: React.FC<{
             
             <div className="mt-4 space-y-2">
                 <TestButton status={testStatus} onTest={handleTest} isButtonDisabled={!formData.username} />
-                <button onClick={handleSave} className="w-full text-sm bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-3 rounded-md transition-colors">
+                <button 
+                    onClick={handleSave} 
+                    disabled={!isFormValid}
+                    className="w-full text-sm bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-3 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
                     {account ? t('accounts.connector.saveButton') : t('accounts.connector.connectButton')}
                 </button>
             </div>

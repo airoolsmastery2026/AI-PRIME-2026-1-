@@ -387,6 +387,11 @@
             "success": "Khôi phục sao lưu thành công. Ứng dụng sẽ tải lại ngay bây giờ.",
             "error": "Không thể nhập bản sao lưu. Tệp có thể không hợp lệ hoặc bị hỏng."
         }
+    },
+    "apiManagement": {
+        "title": "Quản lý Khóa API",
+        "description": "Vì lý do bảo mật, Khóa API Gemini của bạn phải được định cấu hình dưới dạng biến môi trường có tên `API_KEY` trong cài đặt dự án Vercel của bạn. Ứng dụng đọc khóa này ở phía máy chủ, đảm bảo nó không bao giờ bị lộ ra trình duyệt.",
+        "button": "Tài liệu Vercel Env Var"
     }
   },
   "coreEditor": {
