@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI PRIME 2026</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#4a00e0">
+    <link rel="apple-touch-icon" href="/icon-192x192.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/editor/editor.main.css">
+  </head>
+  <body class="bg-black text-gray-200 font-mono antialiased">
+    <div id="root"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs/loader.min.js"></script>
+    <script type="module" src="/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.ts', { scope: '/' })
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

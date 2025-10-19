@@ -1,0 +1,21 @@
+// A curated list of countries, focusing on major markets for content creation.
+export const COUNTRIES = [
+  "USA",
+  "Vietnam",
+  "United Kingdom",
+  "Canada",
+  "Australia",
+  "India",
+  "Germany",
+  "France",
+  "Brazil",
+  "Japan",
+  "South Korea",
+  "Mexico",
+  "Indonesia",
+  "Philippines",
+  "Thailand",
+  "Malaysia",
+  "Singapore",
+  "United Arab Emirates",
+];

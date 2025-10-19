@@ -1,0 +1,609 @@
+{
+  "sidebar": {
+    "dashboard": "Bảng điều khiển",
+    "agents": "Đặc vụ",
+    "accounts": "Tài khoản",
+    "automation": "Tự động hóa",
+    "video": "Video AI",
+    "matrix": "Ma trận Nội dung",
+    "nexus": "Nexus Lệnh",
+    "pilot": "Phi công",
+    "analytics": "Phân tích",
+    "editor": "Trình chỉnh sửa lõi",
+    "settings": "Cài đặt",
+    "accountType": "Tài khoản {{provider}}",
+    "logout": "Đăng xuất"
+  },
+  "dashboard": {
+    "title": "ĐIỀU KHIỂN HỆ THỐNG",
+    "description": "Chào mừng, Người vận hành. Chọn một mô-đun để bắt đầu.",
+    "agents": {
+      "title": "Đặc vụ",
+      "description": "Triển khai và quản lý các đặc vụ AI tự trị cho các kênh nội dung."
+    },
+    "accounts": {
+      "title": "Tài khoản",
+      "description": "Kết nối và quản lý thông tin đăng nhập mạng xã hội và nền tảng liên kết."
+    },
+    "automation": {
+      "title": "Tự động hóa",
+      "description": "Thiết kế và kích hoạt các quy trình công việc phức tạp để xử lý nội dung và dữ liệu."
+    },
+    "video": {
+      "title": "Nhà máy Video AI",
+      "description": "Tạo video và nhân vật chất lượng cao bằng AI tạo sinh."
+    },
+    "matrix": {
+      "title": "Ma trận Nội dung",
+      "description": "Giám sát và quản lý các luồng sản xuất nội dung cho tất cả các tài khoản được kết nối."
+    },
+    "nexus": {
+      "title": "Nexus Lệnh",
+      "description": "Giao tiếp trực tiếp với lõi AI, đồng hóa nội dung bên ngoài và ra lệnh."
+    },
+    "analytics": {
+      "title": "Phân tích",
+      "description": "Theo dõi hiệu suất, phân tích thị trường và khám phá cơ hội."
+    }
+  },
+  "quantumCore": {
+    "title": "LÕI LƯỢNG TỬ",
+    "subtitle": "Đang chờ kích hoạt hệ thống",
+    "statusActivating": "Đang kích hoạt",
+    "statusActivate": "Kích hoạt",
+    "rememberMe": "Ghi nhớ phương thức kích hoạt này",
+    "activateWith": "Hoặc Kích hoạt với"
+  },
+  "automation": {
+    "title": "Luồng tự động hóa",
+    "searchPlaceholder": "Tìm kiếm luồng...",
+    "createButton": "Tạo Luồng Mới",
+    "noFlows": "Không tìm thấy luồng tự động hóa nào.",
+    "statusActive": "Hoạt động",
+    "statusInactive": "Không hoạt động"
+  },
+  "createFlowModal": {
+    "title": "Tạo Luồng Tự động hóa Mới",
+    "nameLabel": "Tên Luồng",
+    "descriptionLabel": "Mô tả",
+    "stepsLabel": "Các bước của Luồng",
+    "stepNamePlaceholder": "Tên bước (ví dụ: 'Lấy dữ liệu')",
+    "stepServicePlaceholder": "Dịch vụ (ví dụ: 'Gemini')",
+    "addStepButton": "Thêm Bước",
+    "createButton": "Tạo Luồng",
+    "alert": "Vui lòng điền tất cả các trường và thêm ít nhất một bước."
+  },
+  "aiVideo": {
+    "title": "Nhà máy Video AI",
+    "description": "Quản lý dây chuyền sản xuất video và tạo nhân vật bằng AI.",
+    "productionQueue": "Hàng chờ Sản xuất",
+    "jobDetails": "Chi tiết Công việc",
+    "noJobsPlaceholder": "Không có công việc video nào trong hàng chờ.",
+    "statusQueued": "Đang chờ",
+    "statusGenerating": "Đang tạo",
+    "statusPublished": "Đã xuất bản",
+    "statusFailed": "Thất bại",
+    "statusScheduled": "Đã lên lịch",
+    "originalInput": "Đầu vào Gốc",
+    "aiGeneratedPrompt": "Prompt do AI tạo",
+    "downloadVideo": "Tải Video",
+    "noJobSelected": "Chọn một công việc để xem chi tiết.",
+    "tabs": {
+      "queue": "Hàng chờ Sản xuất",
+      "character": "Tạo nhân vật"
+    },
+    "generating": {
+      "enhancing": "Đang cải thiện prompt...",
+      "rendering": "Đang kết xuất video...",
+      "success": "Đã tạo video."
+    },
+    "characterCreator": {
+        "formTitle": "Thiết kế Nhân vật",
+        "promptLabel": "Mô tả Nhân vật",
+        "promptPlaceholder": "Ví dụ: Một nữ thám tử cyborg với đôi mắt xanh phát sáng",
+        "styleLabel": "Phong cách Nghệ thuật",
+        "poseLabel": "Tư thế",
+        "clothingLabel": "Trang phục",
+        "backgroundLabel": "Nền",
+        "generateButton": "Tạo 4 Hình ảnh",
+        "generatingButton": "Đang tạo..."
+    }
+  },
+  "resultDisplay": {
+      "title": "Kết quả được tạo",
+      "placeholder": "Hình ảnh nhân vật của bạn sẽ xuất hiện ở đây.",
+      "placeholderDesc": "Điền vào biểu mẫu và nhấp vào tạo."
+  },
+  "analytics": {
+    "tabPerformance": "Hiệu suất",
+    "tabMarket": "Mô phỏng Thị trường",
+    "tabSeo": "Nexus SEO",
+    "tabDualIncome": "Săn Thu nhập Kép",
+    "tabAffiliate": "Tình báo Liên kết",
+    "tabCoach": "Huấn luyện viên AI",
+    "performanceTitle": "Hiệu suất Kênh",
+    "competitorTitle": "Theo dõi Đối thủ",
+    "competitorDesc": "Theo dõi thời gian thực các động thái và xu hướng nội dung của đối thủ cạnh tranh chính.",
+    "competitorA": "Đối thủ A: Tăng 5% thị phần với loạt 'Tin tức AI'.",
+    "competitorB": "Đối thủ B: Video lan truyền về 'Giải thích Điện toán Lượng tử'.",
+    "competitorTrend": "Xu hướng: Nội dung ngắn về đạo đức AI.",
+    "moneyHunterTitleOld": "Săn Cơ hội",
+    "moneyHunterDescOld": "Đặc vụ tự trị tìm kiếm các phương thức kiếm tiền và tăng trưởng mới.",
+    "statusLabel": "Trạng thái",
+    "statusValue": "Đang quét",
+    "findingLabel": "Phát hiện Mới nhất",
+    "findingValue": "Thị trường ngách Bio-Hacking cho thấy RPM cao.",
+    "actionLabel": "Hành động",
+    "actionValue": "Triển khai đặc vụ trinh sát...",
+    "tooltipViews": "Lượt xem",
+    "tooltipRevenue": "Doanh thu",
+    "tooltipRPM": "RPM",
+    "chartTypeBar": "Cột",
+    "chartTypePie": "Tròn",
+    "legendViews": "Lượt xem",
+    "legendRevenue": "Doanh thu",
+    "legendRPM": "RPM"
+  },
+  "marketSimulation": {
+    "title": "Mô phỏng Thị trường",
+    "description": "Phân tích xu hướng thị trường YouTube, cảm tính của khán giả và các cơ hội chiến lược cho bất kỳ thị trường ngách nào.",
+    "inputPlaceholder": "Nhập một thị trường ngách (ví dụ: 'Thiết bị AI')",
+    "button": "Phân tích Thị trường",
+    "buttonLoading": "Đang phân tích...",
+    "placeholder": "Nhập một thị trường ngách để bắt đầu phân tích.",
+    "trendingTitle": "Chủ đề Thịnh hành & Điểm Cơ hội",
+    "opportunity": "Cơ hội",
+    "volume": "Lượng tìm kiếm",
+    "competition": "Cạnh tranh",
+    "sentimentTitle": "Cảm tính Khán giả",
+    "recommendationTitle": "Đề xuất Chiến lược"
+  },
+  "agents": {
+    "title": "Kiểm soát Đặc vụ",
+    "deployButton": "Triển khai Đặc vụ Mới",
+    "roster": "Danh sách Đặc vụ",
+    "status": "Trạng thái",
+    "directive": "Chỉ thị Hiện tại",
+    "actions": "Hành động",
+    "blueprintButton": "Tạo Kế hoạch chi tiết",
+    "reconButton": "Chạy Trinh sát Đối thủ",
+    "utilities": "Tiện ích",
+    "utilitySummarizer": "Tóm tắt",
+    "utilityMetadata": "Tạo Metadata",
+    "utilityThumbnail": "Tư vấn Thumbnail",
+    "utilityShorts": "Tạo ý tưởng video ngắn",
+    "intel": "Thông tin Tình báo",
+    "noIntel": "Tạo kế hoạch hoặc chạy trinh sát để xem thông tin.",
+    "noAgentSelected": "Chọn một đặc vụ để xem chi tiết.",
+    "opportunities": "Cơ hội từ AI",
+    "execute": "Thực thi",
+    "suggestions": {
+        "seo": {
+            "title": "Tối ưu hóa SEO",
+            "desc": "Phân tích các từ khóa hàng đầu và xây dựng chiến lược SEO phản công."
+        },
+        "market": {
+            "title": "Phân tích Xu hướng Thị trường",
+            "desc": "Xác định các xu hướng phụ mới nổi trong chủ đề cốt lõi của đặc vụ."
+        },
+        "content": {
+            "title": "Công thức Nội dung Lan truyền",
+            "desc": "Phân tích một video thành công của đối thủ và tạo kịch bản mới."
+        }
+    },
+    "blueprint": {
+        "thinking": {
+            "step1": "Phân tích Thị trường & Xu hướng",
+            "step2": "Trinh sát Đối thủ cạnh tranh",
+            "step3": "Tổng hợp Kế hoạch chi tiết"
+        },
+        "market": {
+            "title": "Phân tích Thị trường",
+            "rpm": "RPM ước tính",
+            "cpm": "CPM ước tính",
+            "potential": "Tiềm năng Tăng trưởng"
+        },
+        "competitor": {
+            "title": "Thông tin Đối thủ",
+            "weakness": "Điểm yếu Chính"
+        },
+        "risk": {
+            "title": "Đánh giá Rủi ro"
+        },
+        "content": {
+            "title": "Chiến lược Nội dung",
+            "pillar": "Ý tưởng Trụ cột",
+            "shorts": "Ý tưởng Video ngắn"
+        }
+    }
+  },
+  "intelReportModal": {
+    "title": "Báo cáo Trinh sát Đối thủ",
+    "strategyTitle": "Chiến lược Nội dung",
+    "viralTitle": "Ví dụ Video Lan truyền",
+    "reason": "Lý do",
+    "competitorsTitle": "Các Đối thủ được Xác định",
+    "counterStrategyTitle": "Chiến lược Phản công Nội dung",
+    "executeButton": "Gửi Chỉ thị vào Hàng chờ"
+  },
+  "seoNexus": {
+    "title": "Nexus SEO",
+    "description": "Xác định các từ khóa tiềm năng cao và khám phá các thị trường ngách mới nổi để thống trị thuật toán tìm kiếm và đề xuất.",
+    "roverTitle": "Rover Cơ hội",
+    "roverDescription": "Triển khai một đặc vụ AI để quét tìm các thị trường ngách mới nổi, ít được khai thác dựa trên các mục tiêu thống nhất của hệ thống.",
+    "roverButton": "Triển khai Rover",
+    "roverButtonLoading": "Đang quét...",
+    "roverResultsTitle": "Phát hiện của Rover - Nhấp để Phân tích:",
+    "analysisTitle": "Phân tích Thị trường ngách",
+    "inputPlaceholder": "Nhập thị trường ngách hoặc triển khai rover",
+    "button": "Phân tích",
+    "buttonLoading": "Đang phân tích...",
+    "placeholder": "Nhập thị trường ngách hoặc dùng Rover để tìm.",
+    "noResultsPlaceholder": "Chạy phân tích để xem kết quả.",
+    "keywordsTitle": "Cơ hội Từ khóa",
+    "adviceTitle": "Tư vấn SEO Chiến lược",
+    "volume": "Lượng tìm kiếm",
+    "competition": "Cạnh tranh",
+    "virality": "Tính lan truyền"
+  },
+  "aiUtilities": {
+    "summarizerTitle": "Tóm tắt bằng AI",
+    "summarizerPlaceholder": "Dán văn bản cần tóm tắt vào đây...",
+    "metadataTitle": "Tạo Metadata bằng AI",
+    "metadataPlaceholder": "Nhập chủ đề hoặc tiêu đề video...",
+    "thumbnailTitle": "Tư vấn Thumbnail bằng AI",
+    "thumbnailPlaceholder": "Nhập chủ đề video để nhận ý tưởng thumbnail...",
+    "shortsTitle": "Tạo Ý tưởng Video Ngắn bằng AI",
+    "shortsPlaceholder": "Nhập chủ đề để nhận 3 ý tưởng video lan truyền...",
+    "inputLabel": "Đầu vào",
+    "generateButton": "Tạo",
+    "generatingButton": "Đang tạo...",
+    "resultLabel": "Kết quả",
+    "resultPlaceholder": "Nội dung do AI tạo sẽ xuất hiện ở đây."
+  },
+  "addChannelModal": {
+    "title": "Triển khai Đặc vụ Mới",
+    "noAccountsAvailable": "Không có Tài khoản nào khả dụng",
+    "noAccountsHint": "Kết nối một tài khoản xã hội với Chủ đề và Quốc gia trong tab Tài khoản để triển khai đặc vụ.",
+    "connectButton": "Triển khai Đặc vụ",
+    "alertNoCountry": "Vui lòng chỉ định quốc gia cho tài khoản này trong tab Tài khoản trước khi triển khai."
+  },
+  "accounts": {
+    "title": "Tài khoản & Thông tin xác thực",
+    "description": "Quản lý khóa API và kết nối các tài khoản mạng xã hội và nền tảng liên kết của bạn.",
+    "sectionCore": "Tích hợp Cốt lõi",
+    "sectionSocial": "Nền tảng Xã hội",
+    "sectionAffiliateGeneral": "Nền tảng Liên kết Chung",
+    "sectionAffiliateCrypto": "Nền tảng Liên kết Tiền mã hóa",
+    "statusConnected": "Đã kết nối",
+    "statusNotConnected": "Chưa kết nối",
+    "statusValid": "Kết nối hợp lệ",
+    "statusInvalid": "Kết nối không hợp lệ",
+    "statusTesting": "Đang kiểm tra...",
+    "manageButton": "Quản lý",
+    "geminiDescription": "Mô hình AI cốt lõi. Khóa API phải được đặt trong biến môi trường 'API_KEY'. Không thể thay đổi ở đây vì lý do bảo mật.",
+    "linkerTitle": "Trình liên kết Tài khoản",
+    "linkerDescription": "Chỉnh sửa hàng loạt chủ đề, quốc gia và liên kết các nền tảng affiliate với tài khoản xã hội của bạn.",
+    "linkerButton": "Mở Trình liên kết",
+    "accountsConnected": "tài khoản",
+    "noAccounts": "Không có tài khoản nào được kết nối cho nền tảng này.",
+    "edit": "Sửa",
+    "addAccount": "Thêm Tài khoản Mới",
+    "linker": {
+        "platformHeader": "Nền tảng",
+        "usernameHeader": "Tên người dùng",
+        "linkedAffiliatesHeader": "Affiliate đã liên kết",
+        "manageLinks": "Quản lý",
+        "saveAndSync": "Lưu & Đồng bộ tất cả thay đổi",
+        "linkAffiliatesTitle": "Liên kết Affiliate cho {{username}}",
+        "noAffiliates": "Không tìm thấy nền tảng affiliate nào được kết nối. Hãy thêm chúng trong tab Tài khoản chính.",
+        "saveLinks": "Lưu Liên kết"
+    },
+    "connector": {
+        "usernameIdLabel": "Tên người dùng / ID người dùng",
+        "usernameIdPlaceholder": "Nhập tên người dùng hoặc ID",
+        "apiKeyLabel": "Khóa API / Mật khẩu",
+        "apiKeyPlaceholder": "Nhập khóa API hoặc mật khẩu",
+        "affiliateIdLabel": "ID Affiliate / Tên người dùng",
+        "affiliateIdPlaceholder": "Nhập định danh affiliate của bạn",
+        "topicLabel": "Chủ đề / Thị trường ngách chính",
+        "selectNichePlaceholder": "Chọn một thị trường ngách",
+        "countryLabel": "Quốc gia Mục tiêu",
+        "countryPlaceholder": "Ví dụ: USA, Vietnam",
+        "testConnection": "Kiểm tra Kết nối",
+        "testingConnection": "Đang kiểm tra...",
+        "statusValid": "Thông tin hợp lệ",
+        "statusInvalid": "Thông tin không hợp lệ",
+        "saveButton": "Lưu Thay đổi",
+        "connectButton": "Kết nối Tài khoản"
+    }
+  },
+  "contentMatrix": {
+    "title": "Ma trận Nội dung",
+    "description": "Trực quan hóa và quản lý các luồng sản xuất nội dung của bạn. Tạo và phân phối nội dung trên nhiều nền tảng chỉ bằng một lệnh duy nhất.",
+    "noPipelines": "Không tìm thấy Luồng Nội dung nào",
+    "noPipelinesDesc": "Kết nối các tài khoản xã hội và gán cho chúng một Chủ đề trong tab Tài khoản để tạo một luồng.",
+    "connectedChannels": "Các Kênh đã Kết nối",
+    "pipelineControls": "Điều khiển Luồng",
+    "generateAndDistribute": "Tạo & Phân phối",
+    "generating": "Đang tạo...",
+    "generateModal": {
+        "title": "Tạo Nội dung",
+        "promptLabel": "Prompt Nội dung",
+        "promptPlaceholder": "Ví dụ: 'Một video ngắn về trợ lý AI mới Rabbit R1'",
+        "promptHelp": "AI sẽ tạo một video độc đáo cho mỗi nền tảng dựa trên ý tưởng cốt lõi này.",
+        "generateButton": "Tạo cho {{count}} nền tảng"
+    }
+  },
+  "commandNexus": {
+    "title": "Nexus Lệnh",
+    "description": "Giao tiếp trực tiếp với lõi AI. Đưa ra các lệnh văn bản hoặc đồng hóa nội dung từ URL để tạo tài sản mới.",
+    "welcome": "Nexus Lệnh của AI PRIME đã được khởi tạo. Đang chờ lệnh.",
+    "placeholder": "Nhập lệnh...",
+    "placeholderLoading": "Đang chờ phản hồi...",
+    "assimilatorTitle": "Trình đồng hóa Nội dung",
+    "assimilatorDescription": "Cung cấp URL (video YouTube, trang sản phẩm, kênh đối thủ) để phân tích và tái sử dụng nội dung.",
+    "urlPlaceholder": "Nhập URL để đồng hóa...",
+    "assimilateButton": "Đồng hóa",
+    "assimilatingButton": "Đang đồng hóa...",
+    "assimilatedAssetTitle": "Tài sản đã Đồng hóa Sẵn sàng",
+    "sendToVideoFactory": "Gửi Kịch bản đến Nhà máy Video",
+    "deployCounterAgent": "Gửi Chiến lược Phản công đến Hàng chờ",
+    "assimilation": {
+        "step1": "Khởi tạo Giao thức Đồng hóa",
+        "step2": "Phân tích Nội dung Nguồn",
+        "step3": "Phân tích Thông điệp Cốt lõi",
+        "step4": "Tạo Tài sản Mới"
+    }
+  },
+  "pilot": {
+    "title": "Phi công",
+    "description": "Xem lại các video đã tạo, tạo các gói bài đăng dành riêng cho nền tảng và lên lịch đăng nội dung.",
+    "readyTitle": "Sẵn sàng để Lên lịch",
+    "noReadyJobs": "Không có video nào sẵn sàng để lên lịch.",
+    "scheduleTitle": "Lịch Nội dung",
+    "noScheduledJobs": "Không có video nào được lên lịch.",
+    "generatePackage": "Tạo Gói Bài đăng",
+    "generatingPackage": "Đang tạo...",
+    "schedule": "Lên lịch",
+    "statusScheduled": "Đã lên lịch"
+  },
+  "settings": {
+    "title": "Cài đặt Hệ thống",
+    "description": "Cấu hình các tham số hệ thống cốt lõi và quản lý dữ liệu.",
+    "dataManagement": {
+        "title": "Quản lý Dữ liệu",
+        "export": {
+            "title": "Xuất Sao lưu Hệ thống",
+            "description": "Lưu một bản sao lưu đầy đủ của tất cả tài khoản, đặc vụ, công việc và cài đặt của bạn vào một tệp JSON.",
+            "button": "Xuất Sao lưu"
+        },
+        "import": {
+            "title": "Nhập Sao lưu Hệ thống",
+            "description": "Khôi phục trạng thái của hệ thống từ một tệp sao lưu JSON đã xuất trước đó.",
+            "button": "Nhập Sao lưu",
+            "warning": "Cảnh báo: Việc nhập sẽ ghi đè lên tất cả dữ liệu hiện tại.",
+            "confirm": "Bạn có chắc chắn muốn ghi đè tất cả dữ liệu hiện tại bằng bản sao lưu này không?",
+            "success": "Khôi phục sao lưu thành công. Ứng dụng sẽ tải lại ngay bây giờ.",
+            "error": "Không thể nhập bản sao lưu. Tệp có thể không hợp lệ hoặc bị hỏng."
+        }
+    }
+  },
+  "coreEditor": {
+    "title": "Trình chỉnh sửa Lõi Logic",
+    "description": "Chỉnh sửa trực tiếp logic dịch vụ AI cơ bản. Thay đổi ở đây có tác động lớn và yêu cầu biên dịch lại hệ thống.",
+    "saveButton": "Lưu & Biên dịch lại",
+    "savingButton": "Đang lưu..."
+  },
+  "dualIncomeHunter": {
+      "title": "Săn Thu nhập Kép",
+      "description": "Khám phá các thị trường ngách mới nổi có tiềm năng cao cho cả nội dung video lan truyền và tiếp thị liên kết.",
+      "button": "Săn Thị trường ngách",
+      "buttonLoading": "Đang săn...",
+      "placeholder": "Triển khai Thợ săn để tìm kiếm các cơ hội béo bở.",
+      "visualizationTitle": "Phân tích Tiềm năng",
+      "nichesTitle": "Hồ sơ Thị trường ngách",
+      "viralPotential": "Tiềm năng Lan truyền",
+      "affiliatePotential": "Tiềm năng Liên kết",
+      "suggestedProducts": "Sản phẩm Liên kết được đề xuất"
+  },
+  "affiliateIntelligence": {
+    "title": "Tình báo Liên kết",
+    "description": "Triển khai một đặc vụ AI để tìm, phân tích, chấm điểm và xếp hạng các chương trình liên kết tốt nhất cho một lĩnh vực nhất định.",
+    "inputPlaceholder": "Nhập lĩnh vực (ví dụ: 'Công cụ AI SaaS')",
+    "button": "Phân tích Lĩnh vực",
+    "buttonLoading": "Đang phân tích...",
+    "placeholder": "Triển khai đặc vụ để bắt đầu phân tích.",
+    "marketOverview": "Tổng quan Thị trường",
+    "strategicRecommendations": "Đề xuất Chiến lược",
+    "topPrograms": "Các chương trình liên kết hàng đầu",
+    "table": {
+        "program": "Chương trình",
+        "score": "Điểm",
+        "commission": "Hoa hồng",
+        "cookie": "Cookie",
+        "reputation": "Uy tín",
+        "conversion": "Chuyển đổi",
+        "support": "Hỗ trợ",
+        "summary": "Tóm tắt",
+        "action": "Hành động"
+    },
+    "join": "Tham gia"
+  },
+  "aiContentCoach": {
+    "title": "Huấn luyện viên Nội dung AI",
+    "description": "Bản kế hoạch chiến lược của bạn để xây dựng một kênh YouTube tự động bền vững và huấn luyện AI Agent trên Google Studio AI.",
+    "vision": {
+      "title": "I. TẦM NHÌN & MỤC TIÊU",
+      "subtitle": "Mục tiêu tổng thể:",
+      "description": "Xây dựng hệ thống AI YouTube Creator tự vận hành, có khả năng:",
+      "point1": "Tự nghiên cứu thị trường, chọn ngách có lợi nhuận cao.",
+      "point2": "Tự tạo ý tưởng video hấp dẫn, kịch bản, hình ảnh, âm thanh, giọng nói.",
+      "point3": "Tự xuất bản, tối ưu SEO, và tự động phân tích phản hồi để cải thiện.",
+      "point4": "Tích hợp mô hình affiliate, quảng cáo, sản phẩm hoặc tài trợ."
+    },
+    "strategy": {
+      "title": "II. CHIẾN LƯỢC TRIỂN KHAI",
+      "niche": {
+        "title": "1. Xác định ngách và mô hình doanh thu",
+        "description": "AI Agent sẽ tự động phân tích dữ liệu từ YouTube, Google Trends, Reddit, TikTok để chọn:",
+        "contentNicheLabel": "Ngách nội dung",
+        "contentNicheValue": "Tài chính, công nghệ AI, sáng tạo nội dung, giải trí, giáo dục, review sản phẩm.",
+        "revenueSourcesLabel": "Nguồn thu",
+        "revenueSourcesValue": "Quảng cáo (YouTube Partner), Affiliate (Amazon, ClickBank, AdCreative.ai, v.v.), Bán khóa học/sản phẩm kỹ thuật số, Quảng cáo thương hiệu hoặc đối tác."
+      },
+      "workflow": {
+        "title": "2. Quy trình vận hành kênh AI YouTube",
+        "headers": {
+          "stage": "Giai đoạn",
+          "tools": "Công cụ/AI sử dụng",
+          "task": "Nhiệm vụ chính"
+        },
+        "stages": [
+            { "stage": "Nghiên cứu thị trường", "tools": "Google Trends, Glasp, ChatGPT, Perplexity", "task": "Xác định chủ đề hot, phân tích đối thủ" },
+            { "stage": "Kịch bản & voice", "tools": "ChatGPT (hoặc GPT-5), ElevenLabs, SunoAI", "task": "Viết kịch bản, tạo giọng đọc tự nhiên" },
+            { "stage": "Video & hình ảnh", "tools": "Pika Labs, Runway ML, Kling AI, DreamFace, CapCut AI", "task": "Tạo video từ script + hình ảnh" },
+            { "stage": "Tối ưu SEO YouTube", "tools": "TubeBuddy API, VidIQ, Google Studio AI", "task": "Viết tiêu đề, hashtag, mô tả, thumbnail" },
+            { "stage": "Đăng & lịch đăng", "tools": "YouTube API, Google Studio AI", "task": "Tự động đăng & theo dõi tương tác" },
+            { "stage": "Phân tích & học lại", "tools": "Google Analytics + Studio AI", "task": "Học từ dữ liệu để cải thiện chiến lược" }
+        ]
+      }
+    },
+    "training": {
+      "title": "III. LỆNH HUẤN LUYỆN AI AGENT (Prompt chính thức cho Google Studio AI)",
+      "subtitle": "Lệnh tổng hợp huấn luyện AI Agent",
+      "command": "[Objective]\nHuấn luyện AI Agent trở thành chuyên gia phát triển kênh YouTube tự động — có khả năng nghiên cứu, sáng tạo, tối ưu hóa và vận hành hệ thống video sinh lợi.\n\n[Capabilities]\n1. Nghiên cứu xu hướng và chọn chủ đề tiềm năng từ dữ liệu online (YouTube, TikTok, Google Trends).\n2. Viết kịch bản, chọn nhạc, và chỉ định hình ảnh/video minh họa phù hợp với từng thể loại.\n3. Tự tạo nội dung video bằng AI (SunoAI, KlingAI, Pika Labs, Runway ML).\n4. Tự động đặt tiêu đề, mô tả, hashtag theo thuật toán SEO của YouTube.\n5. Quản lý lịch đăng, đo lường hiệu suất (CTR, retention, engagement).\n6. Phân tích dữ liệu phản hồi và tự tối ưu nội dung để tăng trưởng liên tục.\n7. Liên kết hệ thống affiliate marketing hoặc quảng cáo thương hiệu.\n\n[Training Sources]\n- Dữ liệu xu hướng từ Google Trends, YouTube Trending.\n- Dữ liệu script từ top kênh YouTube cùng chủ đề.\n- Mẫu mô tả & thumbnail của kênh top 10 YouTube toàn cầu.\n- Các chính sách SEO và YouTube Studio AI documentation.\n\n[Output]\n- Lịch xuất bản nội dung tự động.\n- 10 ý tưởng video/tuần theo xu hướng.\n- Phân tích hiệu quả từng video.\n- Đề xuất cải tiến kịch bản & SEO.\n\n[Automation Integration]\nKết nối với:\n- Google Studio AI\n- YouTube API\n- SunoAI / KlingAI / Pika Labs / RunwayML\n- Zapier hoặc n8n để tự động hóa quy trình.\n\n[Goal]\nTạo hệ thống kênh YouTube AI tự vận hành, tạo lợi nhuận và duy trì tỷ lệ tăng trưởng ≥20%/tháng."
+    },
+    "agentModels": {
+      "title": "IV. GỢI Ý MÔ HÌNH AI AGENT",
+      "headers": {
+        "name": "Tên Agent",
+        "role": "Vai trò",
+        "tools": "Công cụ gợi ý"
+      },
+      "agents": [
+        { "name": "CreatorBot", "role": "Viết kịch bản & tiêu đề", "tools": "ChatGPT / Google Studio AI" },
+        { "name": "VoiceBot", "role": "Tạo giọng nói tự nhiên", "tools": "ElevenLabs / Suno" },
+        { "name": "VideoBot", "role": "Dựng & biên tập video", "tools": "Pika Labs / Runway" },
+        { "name": "SEOAgent", "role": "Tối ưu SEO YouTube", "tools": "TubeBuddy / Studio AI" },
+        { "name": "AnalystAI", "role": "Phân tích dữ liệu & đề xuất cải tiến", "tools": "Google Analytics / n8n" }
+      ]
+    },
+    "cta": {
+        "title": "Bước tiếp theo",
+        "prompt": "Bạn có muốn mình tạo luôn file cấu hình huấn luyện và hướng dẫn nhập vào Google Studio AI không?",
+        "button": "Tạo File Cấu hình",
+        "response": "Tính năng đang được phát triển. Một tệp cấu hình .json/.yaml có thể tải xuống sẽ được tạo ở đây để hợp lý hóa quy trình huấn luyện agent trong Google Studio AI."
+    }
+  },
+  "errors": {
+    "apiKeyMissing": "Khóa API Gemini chưa được cấu hình. Vui lòng đặt biến môi trường.",
+    "apiKeyInvalid": "Khóa API Gemini không hợp lệ. Vui lòng kiểm tra lại khóa của bạn.",
+    "imageGen": "Tạo hình ảnh thất bại. Mô hình có thể không khả dụng hoặc prompt đã bị từ chối.",
+    "videoGen": "Tạo video thất bại. Có thể do prompt bị từ chối, mô hình không khả dụng hoặc lỗi dịch vụ khác.",
+    "quotaExceeded": "Đã vượt quá hạn ngạch tạo video. Vui lòng kiểm tra giới hạn sử dụng của bạn.",
+    "channelGen": "Không thể tạo kế hoạch chi tiết cho đặc vụ. Mô hình có thể đã trả về phản hồi không hợp lệ.",
+    "marketAnalysis": "Không thể phân tích xu hướng thị trường. Mô hình có thể không khả dụng.",
+    "reconFailed": "Trinh sát đối thủ thất bại. Vui lòng thử lại.",
+    "seoAnalysisFailed": "Phân tích SEO thất bại. Mô hình đã trả về phản hồi không mong muốn.",
+    "generic": "Đã xảy ra lỗi không xác định với dịch vụ AI."
+  },
+  "automations": {
+    "flow19": {
+        "name": "Dây chuyền nội dung YouTube tự động",
+        "description": "Nhận một lệnh duy nhất, tạo video YouTube hoàn chỉnh bằng AI và tự động phân phối trên các nền tảng chính và phụ.",
+        "step1": "Nhận lệnh tạo Video",
+        "step2": "Tạo kịch bản dạng dài",
+        "step3": "Sản xuất video 16:9",
+        "step4": "Đăng lên YouTube",
+        "step5": "Tái sử dụng cho Shorts",
+        "step6": "Phân phối lên TikTok"
+    },
+    "flow20": {
+        "name": "Trinh sát Thị trường ngách & SEO",
+        "description": "Luồng tự trị quét xu hướng thị trường để khám phá các thị trường ngách mới nổi, sau đó thực hiện phân tích SEO và ghi lại cơ hội.",
+        "step1": "Quét xu hướng thị trường",
+        "step2": "Xác định Thị trường ngách mới nổi",
+        "step3": "Tạo phân tích SEO",
+        "step4": "Lưu báo cáo vào Sheets",
+        "step5": "Cập nhật Chỉ thị Hệ thống"
+    },
+    "flow21": {
+        "name": "Tái sử dụng Nội dung dạng ngắn",
+        "description": "Lấy một kịch bản video duy nhất và tái sử dụng nó thành nhiều video dạng ngắn, phân phối chúng lên TikTok, Instagram và YouTube Shorts.",
+        "step1": "Nhập kịch bản video",
+        "step2": "Chuyển thể cho dạng ngắn",
+        "step3": "Sản xuất video 9:16",
+        "step4": "Đăng lên TikTok",
+        "step5": "Đăng lên Instagram",
+        "step6": "Đăng lên YouTube Shorts"
+    },
+    "flow17": {
+      "name": "Giao dịch Crypto Thời gian thực",
+      "description": "Theo dõi dữ liệu thị trường, sử dụng Gemini để phân tích cảm tính và thực hiện giao dịch qua bot, đăng cập nhật lên X.",
+      "step1": "Lấy Dữ liệu Thị trường",
+      "step2": "Phân tích Cảm tính",
+      "step3": "Áp dụng Logic Giao dịch",
+      "step4": "Thực hiện Giao dịch",
+      "step5": "Đăng cập nhật lên X"
+    },
+    "flow18": {
+      "name": "Phễu Nội dung B2B",
+      "description": "Tạo nội dung video chuyên nghiệp, dạng dài từ một lệnh đơn giản và phân phối lên LinkedIn và YouTube.",
+      "step1": "Nhận Lệnh",
+      "step2": "Tạo Kịch bản & Dàn ý",
+      "step3": "Sản xuất Video Dạng dài",
+      "step4": "Đăng lên LinkedIn",
+      "step5": "Đăng lên YouTube"
+    },
+    "flow16": {
+      "name": "Nhà máy Nội dung Faceless",
+      "description": "Sử dụng lệnh hệ thống để kích hoạt nghiên cứu và tạo kịch bản, sau đó tự động tạo video cho kênh nội dung 'faceless'.",
+      "step1": "Nhận Lệnh Chủ đề",
+      "step2": "Áp dụng Công thức Nội dung",
+      "step3": "Nghiên cứu & Tạo Kịch bản",
+      "step4": "Tạo Giọng đọc & Nhạc nền",
+      "step5": "Sản xuất & Tải lên Video"
+    },
+    "flow1": {
+      "name": "API sang Google Sheets",
+      "description": "Lấy dữ liệu từ bất kỳ API nào, xử lý bằng Gemini và lưu dữ liệu có cấu trúc vào Google Sheets.",
+      "step1": "Lấy Dữ liệu API",
+      "step2": "Xử lý bằng AI",
+      "step3": "Áp dụng Logic",
+      "step4": "Lưu vào Google Sheets"
+    },
+    "flow2": {
+      "name": "Google Sheets sang Báo cáo",
+      "description": "Đọc dữ liệu từ Google Sheet, tạo báo cáo tóm tắt bằng Gemini và lưu vào Google Drive.",
+      "step1": "Đọc từ Google Sheets",
+      "step2": "Tạo Báo cáo",
+      "step3": "Lưu vào Google Drive"
+    },
+    "flow5": {
+      "name": "Phân phối Đa nền tảng",
+      "description": "Lấy một tệp từ Google Drive và tự động phân phối nó đến nhiều nền tảng mạng xã hội.",
+      "step1": "Lấy tệp từ Drive",
+      "step2": "Đăng lên YouTube",
+      "step3": "Đăng lên TikTok",
+      "step4": "Đăng lên Instagram",
+      "step5": "Đăng lên X",
+      "step6": "Đăng lên Pinterest"
+    },
+    "flow8": {
+      "name": "Nội dung Dựa trên Hiệu suất",
+      "description": "Phân tích dữ liệu hiệu suất kênh, xác định nội dung hàng đầu và ra lệnh tạo một video tương tự, được cải tiến.",
+      "step1": "Lấy Dữ liệu Phân tích",
+      "step2": "Xác định Nội dung Hàng đầu",
+      "step3": "Ra lệnh Video Mới"
+    },
+    "flow15": {
+      "name": "Chiến lược Tự điều chỉnh",
+      "description": "Phân tích nội dung hoạt động kém, đối chiếu với Google Trends và điều chỉnh chiến lược nội dung.",
+      "step1": "Lấy Dữ liệu Phân tích",
+      "step2": "Phân tích Hiệu suất Kém",
+      "step3": "Kiểm tra Xu hướng",
+      "step4": "Điều chỉnh Chiến lược"
+    }
+  }
+}

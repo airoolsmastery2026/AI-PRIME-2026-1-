@@ -1,0 +1,37 @@
+{
+  "name": "ai-prime-app",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "AI PRIME 2026 - A Fully Automated Digital Business Operating System powered by AI.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "vercel-build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "ai",
+    "react",
+    "gemini",
+    "vercel"
+  ],
+  "author": "AI PRIME Industries",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@google/genai": "^1.25.0",
+    "buffer": "^6.0.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.12.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vercel/node": "^3.2.6",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1"
+  }
+}

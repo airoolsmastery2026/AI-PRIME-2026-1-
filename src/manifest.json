@@ -1,0 +1,21 @@
+{
+  "short_name": "AI PRIME",
+  "name": "AI PRIME 2026",
+  "description": "A Fully Automated Digital Business Operating System powered by AI.",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4a00e0",
+  "background_color": "#000000"
+}

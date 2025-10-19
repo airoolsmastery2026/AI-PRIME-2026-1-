@@ -1,0 +1,609 @@
+{
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "agents": "Agents",
+    "accounts": "Accounts",
+    "automation": "Automation",
+    "video": "AI Video",
+    "matrix": "Content Matrix",
+    "nexus": "Command Nexus",
+    "pilot": "Pilot",
+    "analytics": "Analytics",
+    "editor": "Core Editor",
+    "settings": "Settings",
+    "accountType": "{{provider}} Account",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "title": "SYSTEM CONTROL",
+    "description": "Welcome, Operator. Select a module to begin.",
+    "agents": {
+      "title": "Agents",
+      "description": "Deploy and manage autonomous AI agents for content channels."
+    },
+    "accounts": {
+      "title": "Accounts",
+      "description": "Connect and manage social media and affiliate platform credentials."
+    },
+    "automation": {
+      "title": "Automation",
+      "description": "Design and activate complex workflows for content and data processing."
+    },
+    "video": {
+      "title": "AI Video Factory",
+      "description": "Generate high-quality videos and characters using generative AI."
+    },
+    "matrix": {
+      "title": "Content Matrix",
+      "description": "Oversee and manage content pipelines for all connected accounts."
+    },
+    "nexus": {
+      "title": "Command Nexus",
+      "description": "Directly interface with the AI core, assimilate external content, and issue commands."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "description": "Monitor performance, analyze markets, and discover opportunities."
+    }
+  },
+  "quantumCore": {
+    "title": "QUANTUM CORE",
+    "subtitle": "Awaiting System Activation",
+    "statusActivating": "Activating",
+    "statusActivate": "Activate",
+    "rememberMe": "Remember this activation method",
+    "activateWith": "Or Activate With"
+  },
+  "automation": {
+    "title": "Automation Flows",
+    "searchPlaceholder": "Search flows...",
+    "createButton": "Create New Flow",
+    "noFlows": "No automation flows found.",
+    "statusActive": "Active",
+    "statusInactive": "Inactive"
+  },
+  "createFlowModal": {
+    "title": "Create New Automation Flow",
+    "nameLabel": "Flow Name",
+    "descriptionLabel": "Description",
+    "stepsLabel": "Flow Steps",
+    "stepNamePlaceholder": "Step Name (e.g., 'Fetch Data')",
+    "stepServicePlaceholder": "Service (e.g., 'Gemini')",
+    "addStepButton": "Add Step",
+    "createButton": "Create Flow",
+    "alert": "Please fill out all fields and add at least one step."
+  },
+  "aiVideo": {
+    "title": "AI Video Factory",
+    "description": "Manage video production pipelines and create generative characters.",
+    "productionQueue": "Production Queue",
+    "jobDetails": "Job Details",
+    "noJobsPlaceholder": "No video jobs in the queue.",
+    "statusQueued": "Queued",
+    "statusGenerating": "Generating",
+    "statusPublished": "Published",
+    "statusFailed": "Failed",
+    "statusScheduled": "Scheduled",
+    "originalInput": "Original Input",
+    "aiGeneratedPrompt": "AI-Generated Prompt",
+    "downloadVideo": "Download Video",
+    "noJobSelected": "Select a job to view details.",
+    "tabs": {
+      "queue": "Production Queue",
+      "character": "Character Creator"
+    },
+    "generating": {
+      "enhancing": "Enhancing prompt...",
+      "rendering": "Rendering video...",
+      "success": "Video generated."
+    },
+    "characterCreator": {
+        "formTitle": "Character Design",
+        "promptLabel": "Character Description",
+        "promptPlaceholder": "e.g., A female cyborg detective with glowing blue eyes",
+        "styleLabel": "Art Style",
+        "poseLabel": "Pose",
+        "clothingLabel": "Clothing",
+        "backgroundLabel": "Background",
+        "generateButton": "Generate 4 Images",
+        "generatingButton": "Generating..."
+    }
+  },
+  "resultDisplay": {
+      "title": "Generated Results",
+      "placeholder": "Your character images will appear here.",
+      "placeholderDesc": "Fill out the form and click generate."
+  },
+  "analytics": {
+    "tabPerformance": "Performance",
+    "tabMarket": "Market Simulation",
+    "tabSeo": "SEO Nexus",
+    "tabDualIncome": "Dual-Income Hunter",
+    "tabAffiliate": "Affiliate Intelligence",
+    "tabCoach": "AI Coach",
+    "performanceTitle": "Channel Performance",
+    "competitorTitle": "Competitor Watchlist",
+    "competitorDesc": "Real-time tracking of key competitor movements and content trends.",
+    "competitorA": "Competitor A: Gained 5% market share with 'AI News' series.",
+    "competitorB": "Competitor B: Viral video on 'Quantum Computing Explained'.",
+    "competitorTrend": "Trending: Short-form content on AI ethics.",
+    "moneyHunterTitleOld": "Opportunity Hunter",
+    "moneyHunterDescOld": "Autonomous agent seeking new monetization and growth vectors.",
+    "statusLabel": "Status",
+    "statusValue": "Scanning",
+    "findingLabel": "Latest Finding",
+    "findingValue": "Bio-Hacking niche shows high RPM.",
+    "actionLabel": "Action",
+    "actionValue": "Deploying recon agent...",
+    "tooltipViews": "Views",
+    "tooltipRevenue": "Revenue",
+    "tooltipRPM": "RPM",
+    "chartTypeBar": "Bar",
+    "chartTypePie": "Pie",
+    "legendViews": "Views",
+    "legendRevenue": "Revenue",
+    "legendRPM": "RPM"
+  },
+  "marketSimulation": {
+    "title": "Market Simulation",
+    "description": "Analyze YouTube market trends, audience sentiment, and strategic opportunities for any given niche.",
+    "inputPlaceholder": "Enter a market niche (e.g., 'AI Gadgets')",
+    "button": "Analyze Market",
+    "buttonLoading": "Analyzing...",
+    "placeholder": "Enter a niche to begin market analysis.",
+    "trendingTitle": "Trending Topics & Opportunity Score",
+    "opportunity": "Opportunity",
+    "volume": "Volume",
+    "competition": "Competition",
+    "sentimentTitle": "Audience Sentiment",
+    "recommendationTitle": "Strategic Recommendation"
+  },
+  "agents": {
+    "title": "Agent Control",
+    "deployButton": "Deploy New Agent",
+    "roster": "Agent Roster",
+    "status": "Status",
+    "directive": "Active Directive",
+    "actions": "Actions",
+    "blueprintButton": "Generate Blueprint",
+    "reconButton": "Run Competitor Recon",
+    "utilities": "Utilities",
+    "utilitySummarizer": "Summarizer",
+    "utilityMetadata": "Metadata Generator",
+    "utilityThumbnail": "Thumbnail Advisor",
+    "utilityShorts": "Shorts Idea Generator",
+    "intel": "Strategic Intel",
+    "noIntel": "Generate a blueprint or run recon to see intel.",
+    "noAgentSelected": "Select an agent from the roster to view details.",
+    "opportunities": "AI Opportunities",
+    "execute": "Execute",
+    "suggestions": {
+        "seo": {
+            "title": "SEO Optimization",
+            "desc": "Analyze top keywords and formulate an SEO counter-strategy."
+        },
+        "market": {
+            "title": "Market Trend Analysis",
+            "desc": "Identify emerging sub-trends within the agent's core topic."
+        },
+        "content": {
+            "title": "Viral Content Formula",
+            "desc": "Deconstruct a competitor's viral hit and generate a new script."
+        }
+    },
+    "blueprint": {
+        "thinking": {
+            "step1": "Market & Trend Analysis",
+            "step2": "Competitor Reconnaissance",
+            "step3": "Synthesizing Blueprint"
+        },
+        "market": {
+            "title": "Market Analysis",
+            "rpm": "Est. RPM",
+            "cpm": "Est. CPM",
+            "potential": "Growth Potential"
+        },
+        "competitor": {
+            "title": "Competitor Intel",
+            "weakness": "Key Weakness"
+        },
+        "risk": {
+            "title": "Risk Assessment"
+        },
+        "content": {
+            "title": "Content Strategy",
+            "pillar": "Pillar Ideas",
+            "shorts": "Shorts Ideas"
+        }
+    }
+  },
+  "intelReportModal": {
+    "title": "Competitor Recon Report",
+    "strategyTitle": "Content Strategy",
+    "viralTitle": "Viral Hit Example",
+    "reason": "Reason",
+    "competitorsTitle": "Identified Competitors",
+    "counterStrategyTitle": "Content Counter-Strategy",
+    "executeButton": "Send Directive to Agent Queue"
+  },
+  "seoNexus": {
+    "title": "SEO Nexus",
+    "description": "Identify high-potential keywords and discover emerging niches to dominate search and recommendation algorithms.",
+    "roverTitle": "Opportunity Rover",
+    "roverDescription": "Deploy an AI agent to scan the digital horizon for emerging, underserved niches based on the system's unified goals.",
+    "roverButton": "Deploy Rover",
+    "roverButtonLoading": "Scanning...",
+    "roverResultsTitle": "Rover Findings - Click to Analyze:",
+    "analysisTitle": "Niche Analysis",
+    "inputPlaceholder": "Enter a niche to analyze or deploy the rover",
+    "button": "Analyze Niche",
+    "buttonLoading": "Analyzing...",
+    "placeholder": "Enter a niche or use the Rover to find one.",
+    "noResultsPlaceholder": "Run analysis to see results.",
+    "keywordsTitle": "Keyword Opportunities",
+    "adviceTitle": "Strategic SEO Advice",
+    "volume": "Volume",
+    "competition": "Competition",
+    "virality": "Virality"
+  },
+  "aiUtilities": {
+    "summarizerTitle": "AI Summarizer",
+    "summarizerPlaceholder": "Paste text to summarize here...",
+    "metadataTitle": "AI Metadata Generator",
+    "metadataPlaceholder": "Enter a video topic or title...",
+    "thumbnailTitle": "AI Thumbnail Advisor",
+    "thumbnailPlaceholder": "Enter a video topic to get thumbnail ideas...",
+    "shortsTitle": "Viral Shorts Idea Generator",
+    "shortsPlaceholder": "Enter a topic to get 3 viral video ideas...",
+    "inputLabel": "Input",
+    "generateButton": "Generate",
+    "generatingButton": "Generating...",
+    "resultLabel": "Result",
+    "resultPlaceholder": "AI-generated content will appear here."
+  },
+  "addChannelModal": {
+    "title": "Deploy New Agent",
+    "noAccountsAvailable": "No Available Accounts",
+    "noAccountsHint": "Connect a social account with a Topic and Country in the Accounts tab to make it available for agent deployment.",
+    "connectButton": "Deploy Agent",
+    "alertNoCountry": "Please specify a country for this account in the Accounts tab before deploying an agent."
+  },
+  "accounts": {
+    "title": "Accounts & Credentials",
+    "description": "Manage API keys and connect your social and affiliate platform accounts.",
+    "sectionCore": "Core Integrations",
+    "sectionSocial": "Social Platforms",
+    "sectionAffiliateGeneral": "General Affiliate Platforms",
+    "sectionAffiliateCrypto": "Crypto Affiliate Platforms",
+    "statusConnected": "Connected",
+    "statusNotConnected": "Not Connected",
+    "statusValid": "Connection Valid",
+    "statusInvalid": "Connection Invalid",
+    "statusTesting": "Testing...",
+    "manageButton": "Manage",
+    "geminiDescription": "The core AI model. The API key must be set in the 'API_KEY' environment variable. It cannot be changed here for security.",
+    "linkerTitle": "Account Linker",
+    "linkerDescription": "Bulk edit topics, countries, and link affiliate platforms to your social accounts.",
+    "linkerButton": "Open Linker",
+    "accountsConnected": "accounts",
+    "noAccounts": "No accounts connected for this platform.",
+    "edit": "Edit",
+    "addAccount": "Add New Account",
+    "linker": {
+        "platformHeader": "Platform",
+        "usernameHeader": "Username",
+        "linkedAffiliatesHeader": "Linked Affiliates",
+        "manageLinks": "Manage",
+        "saveAndSync": "Save & Sync All Changes",
+        "linkAffiliatesTitle": "Link Affiliates for {{username}}",
+        "noAffiliates": "No connected affiliate platforms found. Add them in the main Accounts tab.",
+        "saveLinks": "Save Links"
+    },
+    "connector": {
+        "usernameIdLabel": "Username / User ID",
+        "usernameIdPlaceholder": "Enter username or ID",
+        "apiKeyLabel": "API Key / Password",
+        "apiKeyPlaceholder": "Enter API key or password",
+        "affiliateIdLabel": "Affiliate ID / Username",
+        "affiliateIdPlaceholder": "Enter your affiliate identifier",
+        "topicLabel": "Primary Topic / Niche",
+        "selectNichePlaceholder": "Select a niche",
+        "countryLabel": "Target Country",
+        "countryPlaceholder": "e.g., USA, Vietnam",
+        "testConnection": "Test Connection",
+        "testingConnection": "Testing...",
+        "statusValid": "Valid Credentials",
+        "statusInvalid": "Invalid Credentials",
+        "saveButton": "Save Changes",
+        "connectButton": "Connect Account"
+    }
+  },
+  "contentMatrix": {
+    "title": "Content Matrix",
+    "description": "Visualize and manage your content pipelines. Generate and distribute content across multiple platforms with a single command.",
+    "noPipelines": "No Content Pipelines Found",
+    "noPipelinesDesc": "Connect social accounts and assign them a Topic in the Accounts tab to create a pipeline.",
+    "connectedChannels": "Connected Channels",
+    "pipelineControls": "Pipeline Controls",
+    "generateAndDistribute": "Generate & Distribute",
+    "generating": "Generating...",
+    "generateModal": {
+        "title": "Generate Content",
+        "promptLabel": "Content Prompt",
+        "promptPlaceholder": "e.g., 'A short video about the new AI assistant Rabbit R1'",
+        "promptHelp": "The AI will generate a unique video for each platform based on this core idea.",
+        "generateButton": "Generate for {{count}} platforms"
+    }
+  },
+  "commandNexus": {
+    "title": "Command Nexus",
+    "description": "Directly interface with the AI core. Issue text commands or assimilate content from URLs to create new assets.",
+    "welcome": "AI PRIME Command Nexus Initialized. Awaiting input.",
+    "placeholder": "Enter command...",
+    "placeholderLoading": "Awaiting response...",
+    "assimilatorTitle": "Content Assimilator",
+    "assimilatorDescription": "Provide a URL (YouTube video, product page, competitor channel) to deconstruct and repurpose its content.",
+    "urlPlaceholder": "Enter URL to assimilate...",
+    "assimilateButton": "Assimilate",
+    "assimilatingButton": "Assimilating...",
+    "assimilatedAssetTitle": "Assimilated Asset Ready",
+    "sendToVideoFactory": "Send Script to Video Factory",
+    "deployCounterAgent": "Send Counter-Strategy to Agent Queue",
+    "assimilation": {
+        "step1": "Initializing Assimilation Protocol",
+        "step2": "Analyzing Source Content",
+        "step3": "Deconstructing Core Message",
+        "step4": "Generating New Asset"
+    }
+  },
+  "pilot": {
+    "title": "Pilot",
+    "description": "Review generated videos, create platform-specific post packages, and schedule content for publication.",
+    "readyTitle": "Ready for Scheduling",
+    "noReadyJobs": "No videos ready for scheduling.",
+    "scheduleTitle": "Content Schedule",
+    "noScheduledJobs": "No videos scheduled for publication.",
+    "generatePackage": "Generate Post Package",
+    "generatingPackage": "Generating...",
+    "schedule": "Schedule",
+    "statusScheduled": "Scheduled"
+  },
+  "settings": {
+    "title": "System Settings",
+    "description": "Configure core system parameters and manage data.",
+    "dataManagement": {
+        "title": "Data Management",
+        "export": {
+            "title": "Export System Backup",
+            "description": "Save a full backup of all your accounts, agents, jobs, and settings to a JSON file.",
+            "button": "Export Backup"
+        },
+        "import": {
+            "title": "Import System Backup",
+            "description": "Restore the system's state from a previously exported JSON backup file.",
+            "button": "Import Backup",
+            "warning": "Warning: Importing will overwrite all current data.",
+            "confirm": "Are you sure you want to overwrite all current data with this backup?",
+            "success": "Backup restored successfully. The application will now reload.",
+            "error": "Failed to import backup. The file may be invalid or corrupted."
+        }
+    }
+  },
+  "coreEditor": {
+    "title": "Core Logic Editor",
+    "description": "Directly edit the underlying AI service logic. Changes here are high-impact and require a system recompile.",
+    "saveButton": "Save & Recompile",
+    "savingButton": "Saving..."
+  },
+  "dualIncomeHunter": {
+      "title": "Dual-Income Hunter",
+      "description": "Discover emerging niches with high potential for both viral video content and affiliate marketing.",
+      "button": "Hunt for Niches",
+      "buttonLoading": "Hunting...",
+      "placeholder": "Deploy the Hunter to find lucrative opportunities.",
+      "visualizationTitle": "Potential Analysis",
+      "nichesTitle": "Niche Dossiers",
+      "viralPotential": "Viral Potential",
+      "affiliatePotential": "Affiliate Potential",
+      "suggestedProducts": "Suggested Affiliate Products"
+  },
+  "affiliateIntelligence": {
+    "title": "Affiliate Intelligence",
+    "description": "Deploy an AI agent to find, analyze, score, and rank the best affiliate programs for a given niche.",
+    "inputPlaceholder": "Enter a niche (e.g., 'AI SaaS Tools')",
+    "button": "Analyze Niche",
+    "buttonLoading": "Analyzing...",
+    "placeholder": "Deploy the agent to begin analysis.",
+    "marketOverview": "Market Overview",
+    "strategicRecommendations": "Strategic Recommendations",
+    "topPrograms": "Top Affiliate Programs",
+    "table": {
+        "program": "Program",
+        "score": "Score",
+        "commission": "Commission",
+        "cookie": "Cookie",
+        "reputation": "Reputation",
+        "conversion": "Conversion",
+        "support": "Support",
+        "summary": "Summary",
+        "action": "Action"
+    },
+    "join": "Join Program"
+  },
+  "aiContentCoach": {
+    "title": "AI Content Coach",
+    "description": "Your strategic blueprint for building a sustainable, automated YouTube channel and training your AI Agent on Google Studio AI.",
+    "vision": {
+      "title": "I. VISION & GOALS",
+      "subtitle": "Overall Objective:",
+      "description": "Build a self-operating AI YouTube Creator system capable of:",
+      "point1": "Independently researching markets and selecting high-profit niches.",
+      "point2": "Generating engaging video ideas, scripts, visuals, audio, and voice-overs.",
+      "point3": "Self-publishing, optimizing for SEO, and automatically analyzing feedback for improvement.",
+      "point4": "Integrating affiliate models, advertising, products, or sponsorships."
+    },
+    "strategy": {
+      "title": "II. IMPLEMENTATION STRATEGY",
+      "niche": {
+        "title": "1. Niche & Revenue Model Identification",
+        "description": "The AI Agent will automatically analyze data from YouTube, Google Trends, Reddit, and TikTok to select:",
+        "contentNicheLabel": "Content Niche",
+        "contentNicheValue": "Finance, AI Technology, Content Creation, Entertainment, Education, Product Reviews.",
+        "revenueSourcesLabel": "Revenue Sources",
+        "revenueSourcesValue": "Advertising (YouTube Partner), Affiliate (Amazon, ClickBank, AdCreative.ai, etc.), Selling courses/digital products, Brand sponsorships or partnerships."
+      },
+      "workflow": {
+        "title": "2. AI YouTube Channel Workflow",
+        "headers": {
+          "stage": "Stage",
+          "tools": "Tools/AI Used",
+          "task": "Main Task"
+        },
+        "stages": [
+          { "stage": "Market Research", "tools": "Google Trends, Glasp, ChatGPT, Perplexity", "task": "Identify hot topics, analyze competitors" },
+          { "stage": "Script & Voice", "tools": "ChatGPT (or GPT-5), ElevenLabs, SunoAI", "task": "Write scripts, generate natural voice-overs" },
+          { "stage": "Video & Imagery", "tools": "Pika Labs, Runway ML, Kling AI, DreamFace, CapCut AI", "task": "Create video from script + images" },
+          { "stage": "YouTube SEO Optimization", "tools": "TubeBuddy API, VidIQ, Google Studio AI", "task": "Write titles, hashtags, descriptions, thumbnails" },
+          { "stage": "Publishing & Scheduling", "tools": "YouTube API, Google Studio AI", "task": "Auto-post & track interactions" },
+          { "stage": "Analysis & Learning", "tools": "Google Analytics + Studio AI", "task": "Learn from data to improve strategy" }
+        ]
+      }
+    },
+    "training": {
+      "title": "III. AI AGENT TRAINING COMMAND (Official Prompt for Google Studio AI)",
+      "subtitle": "Master Training Command for AI Agent",
+      "command": "[Objective]\nTrain the AI Agent to become an expert in automated YouTube channel development—capable of researching, creating, optimizing, and operating a profitable video system.\n\n[Capabilities]\n1. Research trends and select potential topics from online data (YouTube, TikTok, Google Trends).\n2. Write scripts, select music, and specify appropriate images/videos for each genre.\n3. Natively create video content using AI (SunoAI, KlingAI, Pika Labs, Runway ML).\n4. Automatically set titles, descriptions, and hashtags according to YouTube's SEO algorithm.\n5. Manage publishing schedules, measure performance (CTR, retention, engagement).\n6. Analyze feedback data and self-optimize content for continuous growth.\n7. Link with affiliate marketing systems or brand advertising.\n\n[Training Sources]\n- Trend data from Google Trends, YouTube Trending.\n- Script data from top YouTube channels in the same niche.\n- Description & thumbnail templates from the top 10 global YouTube channels.\n- SEO policies and YouTube Studio AI documentation.\n\n[Output]\n- Automated content publishing schedule.\n- 10 video ideas/week based on trends.\n- Performance analysis for each video.\n- Recommendations for script & SEO improvements.\n\n[Automation Integration]\nConnect with:\n- Google Studio AI\n- YouTube API\n- SunoAI / KlingAI / Pika Labs / RunwayML\n- Zapier or n8n to automate the workflow.\n\n[Goal]\nCreate a self-operating AI YouTube channel system that generates profit and maintains a growth rate of ≥20%/month."
+    },
+    "agentModels": {
+      "title": "IV. SUGGESTED AI AGENT MODELS",
+      "headers": {
+        "name": "Agent Name",
+        "role": "Role",
+        "tools": "Suggested Tools"
+      },
+      "agents": [
+        { "name": "CreatorBot", "role": "Writes scripts & titles", "tools": "ChatGPT / Google Studio AI" },
+        { "name": "VoiceBot", "role": "Generates natural voice-overs", "tools": "ElevenLabs / Suno" },
+        { "name": "VideoBot", "role": "Assembles & edits video", "tools": "Pika Labs / Runway" },
+        { "name": "SEOAgent", "role": "Optimizes YouTube SEO", "tools": "TubeBuddy / Studio AI" },
+        { "name": "AnalystAI", "role": "Analyzes data & suggests improvements", "tools": "Google Analytics / n8n" }
+      ]
+    },
+    "cta": {
+      "title": "Next Steps",
+      "prompt": "Would you like me to create the complete training configuration file for Google Studio AI and provide instructions on how to import it?",
+      "button": "Generate Configuration File",
+      "response": "Feature in development. A downloadable .json/.yaml configuration file will be generated here to streamline the agent training process in Google Studio AI."
+    }
+  },
+  "errors": {
+    "apiKeyMissing": "Gemini API key is not configured. Please set the environment variable.",
+    "apiKeyInvalid": "Gemini API key is not valid. Please check your key and try again.",
+    "imageGen": "Image generation failed. The model may be unavailable or the prompt was rejected.",
+    "videoGen": "Video generation failed. This can be due to prompt rejection, model unavailability, or other service errors.",
+    "quotaExceeded": "Video generation quota exceeded. Please check your usage limits.",
+    "channelGen": "Failed to generate agent blueprint. The model may have returned an invalid response.",
+    "marketAnalysis": "Failed to analyze market trends. The model may be unavailable.",
+    "reconFailed": "Competitor reconnaissance failed. Please try again.",
+    "seoAnalysisFailed": "SEO analysis failed. The model returned an unexpected response.",
+    "generic": "An unknown error occurred with the AI service."
+  },
+  "automations": {
+    "flow19": {
+      "name": "Automated YouTube Content Pipeline",
+      "description": "Takes a single command, generates a full-length YouTube video with AI, and automatically distributes it across primary and secondary platforms.",
+      "step1": "Receive Video Command",
+      "step2": "Generate Long-form Script",
+      "step3": "Produce 16:9 Video",
+      "step4": "Publish to YouTube",
+      "step5": "Repurpose for Shorts",
+      "step6": "Distribute to TikTok"
+    },
+    "flow20": {
+      "name": "Emerging Niche & SEO Scout",
+      "description": "An autonomous flow that scans market trends to discover emerging niches, then performs an SEO analysis and logs the opportunity.",
+      "step1": "Scan Market Trends",
+      "step2": "Identify Emerging Niche",
+      "step3": "Generate SEO Insights",
+      "step4": "Log Report to Sheets",
+      "step5": "Update System Directives"
+    },
+    "flow21": {
+      "name": "Short-Form Content Repurposing",
+      "description": "Takes a single video script and repurposes it into multiple short-form videos, distributing them to TikTok, Instagram, and YouTube Shorts.",
+      "step1": "Input Video Script",
+      "step2": "Adapt for Short-Form",
+      "step3": "Produce 9:16 Video",
+      "step4": "Publish to TikTok",
+      "step5": "Publish to Instagram",
+      "step6": "Publish to YouTube Shorts"
+    },
+    "flow17": {
+      "name": "Real-Time Crypto Trader",
+      "description": "Monitors market data, uses Gemini for sentiment analysis, and executes trades via a trading bot, posting updates to X.",
+      "step1": "Fetch Market Data",
+      "step2": "Analyze Sentiment",
+      "step3": "Apply Trading Logic",
+      "step4": "Execute Trade",
+      "step5": "Post Update to X"
+    },
+    "flow18": {
+      "name": "B2B Content Funnel",
+      "description": "Generates professional, long-form video content from a simple command and distributes it to LinkedIn and YouTube.",
+      "step1": "Receive Command",
+      "step2": "Generate Script & Outline",
+      "step3": "Produce Long-form Video",
+      "step4": "Publish to LinkedIn",
+      "step5": "Publish to YouTube"
+    },
+    "flow16": {
+      "name": "Faceless Content Factory",
+      "description": "Uses a system command to trigger research and script generation, followed by automated video creation for a 'faceless' content channel.",
+      "step1": "Receive Topic Command",
+      "step2": "Apply Content Formula",
+      "step3": "Research & Generate Script",
+      "step4": "Generate Voiceover & Music",
+      "step5": "Produce & Upload Video"
+    },
+    "flow1": {
+      "name": "API to Google Sheets",
+      "description": "Pulls data from any API, processes it with Gemini, and saves structured data to Google Sheets.",
+      "step1": "Fetch API Data",
+      "step2": "Process with AI",
+      "step3": "Apply Logic",
+      "step4": "Save to Google Sheets"
+    },
+    "flow2": {
+      "name": "Google Sheets to Report",
+      "description": "Reads data from a Google Sheet, generates a summary report with Gemini, and saves it to Google Drive.",
+      "step1": "Read from Google Sheets",
+      "step2": "Generate Report",
+      "step3": "Save to Google Drive"
+    },
+    "flow5": {
+      "name": "Cross-Platform Distribution",
+      "description": "Takes a file from Google Drive and automatically distributes it to multiple social media platforms.",
+      "step1": "Get File from Drive",
+      "step2": "Post to YouTube",
+      "step3": "Post to TikTok",
+      "step4": "Post to Instagram",
+      "step5": "Post to X",
+      "step6": "Post to Pinterest"
+    },
+    "flow8": {
+      "name": "Performance-Driven Content",
+      "description": "Analyzes channel performance data, identifies top content, and issues a command to create a similar, improved video.",
+      "step1": "Fetch Analytics",
+      "step2": "Identify Top Content",
+      "step3": "Command New Video"
+    },
+    "flow15": {
+      "name": "Self-Correcting Strategy",
+      "description": "Analyzes underperforming content, cross-references with Google Trends, and adjusts the content strategy.",
+      "step1": "Fetch Analytics",
+      "step2": "Analyze Underperformance",
+      "step3": "Check Trends",
+      "step4": "Adjust Strategy"
+    }
+  }
+}
