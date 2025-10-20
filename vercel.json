@@ -1,15 +1,17 @@
 {
+  "builds": [
+    { "src": "api/generate.ts", "use": "@vercel/node" },
+    { "src": "api/analyze.ts", "use": "@vercel/node" },
+    { "src": "api/utility.ts", "use": "@vercel/node" }
+  ],
   "functions": {
     "api/generate.ts": {
-      "runtime": "@vercel/node@3.2.6",
       "maxDuration": 45
     },
     "api/analyze.ts": {
-      "runtime": "@vercel/node@3.2.6",
       "maxDuration": 45
     },
     "api/utility.ts": {
-      "runtime": "@vercel/node@3.2.6",
       "maxDuration": 45
     }
   },
