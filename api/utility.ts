@@ -61,8 +61,8 @@ async function handleUtilityTask(req: VercelRequest, res: VercelResponse) {
                 contents = `Provide actionable suggestions to improve a YouTube thumbnail for a video about "${input}"...`;
                 break;
             case 'shorts':
-                systemInstruction = `You are a creative director specializing in viral short-form video...${langInstruction}`;
-                contents = `Generate 3 unique, high-potential viral video ideas for the topic "${input}"...`;
+                systemInstruction = `You are a creative director specializing in viral short-form video content. For the given topic, generate 3 unique, high-potential viral video ideas. For each idea, provide a catchy title, a strong hook (the first 3 seconds), a brief script, and a call to action (CTA). Format the output as a clean, readable text. Do not use JSON or Markdown code blocks.${langInstruction}`;
+                contents = `Generate 3 unique, high-potential viral video ideas for the topic "${input}".`;
                 break;
             default:
                 throw new Error("Invalid utility task type.");
