@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { PowerIcon } from './icons/PowerIcon';
-import { useTranslation } from '../i18n/useTranslation';
 import { GoogleIcon } from './icons/GoogleIcon';
 import { GitHubIcon } from './icons/GitHubIcon';
 import { XIcon } from './icons/XIcon';
-import { getFromStorage } from '../utils/storage';
 
 type LoginProvider = 'google' | 'github' | 'x' | 'system';
 
@@ -12,40 +10,70 @@ interface QuantumCoreControlProps {
     onLogin: (provider: LoginProvider, remember: boolean) => void;
 }
 
+// Utils lưu/đọc từ localStorage
+const getFromStorage = <T,>(key: string, defaultValue: T): T => {
+    try {
+        const value = localStorage.getItem(key);
+        return value ? (JSON.parse(value) as T) : defaultValue;
+    } catch {
+        return defaultValue;
+    }
+};
+
+const setToStorage = (key: string, value: any) => {
+    try {
+        localStorage.setItem(key, JSON.stringify(value));
+    } catch {}
+};
+
 export const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin }) => {
-    const { t } = useTranslation();
-    const [isLoggingIn, setIsLoggingIn] = useState<string | null>(null);
+    const [isLoggingIn, setIsLoggingIn] = useState<LoginProvider | null>(null);
     const [rememberMe, setRememberMe] = useState(true);
     const [lastUsedProvider, setLastUsedProvider] = useState<LoginProvider | null>(null);
 
+    // Fake translation hook
+    const t = (key: string) => {
+        const dict: Record<string, string> = {
+            'quantumCore.title': 'Quantum Core Access',
+            'quantumCore.subtitle': 'Activate your AI system to continue',
+            'quantumCore.rememberMe': 'Remember me',
+            'quantumCore.activateWith': 'Or activate with',
+            'quantumCore.statusActivate': 'Activate',
+            'quantumCore.statusActivating': 'Activating...',
+        };
+        return dict[key] || key;
+    };
+
     useEffect(() => {
         const remembered = getFromStorage<LoginProvider | null>('rememberedProvider', null);
-        if (remembered) {
-            setLastUsedProvider(remembered);
-        }
+        if (remembered) setLastUsedProvider(remembered);
     }, []);
 
     const handleLogin = (provider: LoginProvider) => {
         setIsLoggingIn(provider);
         setTimeout(() => {
+            if (rememberMe) setToStorage('rememberedProvider', provider);
             onLogin(provider, rememberMe);
-        }, 1500); 
+            setIsLoggingIn(null);
+            setLastUsedProvider(provider);
+        }, 1500);
     };
 
     const SocialButton: React.FC<{
-        provider: 'google' | 'github' | 'x',
-        title: string,
-        children: React.ReactNode
+        provider: 'google' | 'github' | 'x';
+        title: string;
+        children: React.ReactNode;
     }> = ({ provider, title, children }) => {
         const isLoading = isLoggingIn === provider;
         const isRemembered = lastUsedProvider === provider && !isLoggingIn;
-        
         return (
-            <button 
-                title={title} 
+            <button
+                title={title}
                 onClick={() => handleLogin(provider)}
                 disabled={!!isLoggingIn}
-                className={`p-3 bg-gray-800 rounded-full hover:bg-purple-600/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative ${isRemembered ? 'ring-2 ring-cyan-400/80' : ''}`}
+                className={`p-3 bg-gray-800 rounded-full hover:bg-purple-600/50 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative ${
+                    isRemembered ? 'ring-2 ring-cyan-400/80' : ''
+                }`}
             >
                 {isLoading ? (
                     <div className="w-6 h-6 border-2 border-cyan-300 border-t-transparent rounded-full animate-spin"></div>
@@ -64,24 +92,34 @@ export const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin 
             <div className="flex flex-col items-center text-center">
                 <h2 className="text-4xl font-bold text-cyan-300 mb-2">{t('quantumCore.title')}</h2>
                 <p className="text-gray-400 mb-12">{t('quantumCore.subtitle')}</p>
+
                 <button
                     onClick={() => handleLogin('system')}
                     disabled={!!isLoggingIn}
-                    className={`relative group w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 disabled:cursor-not-allowed border-2 ${(isSystemActivating || isSystemRemembered) ? 'animate-pulse-glow border-cyan-400' : 'border-gray-700/50 hover:border-cyan-400/50'}`}
+                    className={`relative group w-48 h-48 rounded-full flex items-center justify-center transition-all duration-500 disabled:cursor-not-allowed border-2 ${
+                        isSystemActivating || isSystemRemembered
+                            ? 'animate-pulse-glow border-cyan-400'
+                            : 'border-gray-700/50 hover:border-cyan-400/50'
+                    }`}
                 >
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-900/50 to-gray-800/50"></div>
-                    {isSystemActivating && (
-                        <>
-                            <div className="absolute inset-0 rounded-full border-2 border-cyan-400/50 animate-[activation-ring_1.5s_ease-out_infinite]"></div>
-                            <div className="absolute inset-0 rounded-full border-2 border-cyan-400/30 animate-[activation-ring_1.5s_ease-out_0.5s_infinite]"></div>
-                        </>
-                    )}
-                    <PowerIcon className={`w-20 h-20 z-10 transition-colors duration-500 ${(isSystemActivating || isSystemRemembered) ? 'text-cyan-300' : 'text-purple-600 group-hover:text-cyan-300'}`} />
-                    <span className={`absolute -bottom-10 text-lg font-semibold tracking-widest uppercase transition-colors ${(isSystemActivating || isSystemRemembered) ? 'text-cyan-300' : 'text-purple-400 group-hover:text-cyan-300'}`}>
+                    <PowerIcon
+                        className={`w-20 h-20 z-10 transition-colors duration-500 ${
+                            isSystemActivating || isSystemRemembered
+                                ? 'text-cyan-300'
+                                : 'text-purple-600 group-hover:text-cyan-300'
+                        }`}
+                    />
+                    <span
+                        className={`absolute -bottom-10 text-lg font-semibold tracking-widest transition-colors ${
+                            isSystemActivating || isSystemRemembered
+                                ? 'text-cyan-300'
+                                : 'text-purple-400 group-hover:text-cyan-300'
+                        }`}
+                    >
                         {isSystemActivating ? t('quantumCore.statusActivating') : t('quantumCore.statusActivate')}
                     </span>
                 </button>
-                
+
                 <div className="flex items-center justify-center mt-16">
                     <input
                         id="remember-me"
@@ -117,3 +155,5 @@ export const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin 
         </div>
     );
 };
+
+export default QuantumCoreControl;
