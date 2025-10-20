@@ -5,21 +5,12 @@
     { "src": "api/utility.ts", "use": "@vercel/node@3.2.6" }
   ],
   "functions": {
-    "api/generate.ts": {
-      "maxDuration": 45
-    },
-    "api/analyze.ts": {
-      "maxDuration": 45
-    },
-    "api/utility.ts": {
-      "maxDuration": 45
-    }
+    "api/generate.ts": { "maxDuration": 45 },
+    "api/analyze.ts": { "maxDuration": 45 },
+    "api/utility.ts": { "maxDuration": 45 }
   },
   "rewrites": [
-    {
-      "source": "/((?!api/).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
