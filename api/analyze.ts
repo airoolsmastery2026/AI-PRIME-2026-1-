@@ -8,6 +8,22 @@ const getLanguageInstruction = (language?: 'en' | 'vi'): string => {
     return `\nYour entire response, including all text within any JSON output, must be in the ${langName} language.`;
 };
 
+// Centralized error message key resolver for API errors
+const getApiErrorMessageKey = (error: any, defaultKey: string): string => {
+    const message = String(error?.message || '').toLowerCase();
+    if (message.includes('api key not valid')) {
+        return "errors.apiKeyInvalid";
+    }
+    if (message.includes('resource_exhausted') || message.includes('quota')) {
+        return "errors.quotaExceeded";
+    }
+    if (message.includes('safety') || message.includes('blocked')) {
+        return "errors.promptRejected";
+    }
+    return defaultKey;
+};
+
+
 // --- HANDLER for Market Trend Analysis ---
 async function handleMarketTrends(req: VercelRequest, res: VercelResponse) {
     try {
@@ -36,8 +52,8 @@ async function handleMarketTrends(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json(JSON.parse(jsonText));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'marketTrends':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.marketAnalysis";
-        return res.status(500).json({ error: 'Failed to analyze market.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.marketAnalysis");
+        return res.status(500).json({ error: 'Failed to analyze market.', details });
     }
 }
 
@@ -63,8 +79,8 @@ async function handleCompetitorRecon(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json(JSON.parse(jsonText));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'competitorRecon':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.reconFailed";
-        return res.status(500).json({ error: 'Failed to perform recon.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.reconFailed");
+        return res.status(500).json({ error: 'Failed to perform recon.', details });
     }
 }
 
@@ -90,8 +106,8 @@ async function handleSeo(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json(JSON.parse(jsonText));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'seo':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.seoAnalysisFailed";
-        return res.status(500).json({ error: 'Failed to perform SEO analysis.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.seoAnalysisFailed");
+        return res.status(500).json({ error: 'Failed to perform SEO analysis.', details });
     }
 }
 
@@ -122,8 +138,8 @@ async function handleEmergingNiches(req: VercelRequest, res: VercelResponse) {
         }
     } catch (error: any) {
         console.error("[API_ERROR] Action 'emergingNiches':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.seoAnalysisFailed";
-        return res.status(500).json({ error: 'Failed to find niches.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.seoAnalysisFailed");
+        return res.status(500).json({ error: 'Failed to find niches.', details });
     }
 }
 
@@ -149,8 +165,8 @@ async function handleChannel(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json(JSON.parse(jsonMatch[0]));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'channel':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.reconFailed";
-        return res.status(500).json({ error: 'Failed to analyze channel.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.reconFailed");
+        return res.status(500).json({ error: 'Failed to analyze channel.', details });
     }
 }
 
@@ -174,8 +190,8 @@ async function handleDualIncomeNiches(req: VercelRequest, res: VercelResponse) {
         return res.status(200).json(JSON.parse(jsonMatch[0]));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'dualIncomeNiches':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.marketAnalysis";
-        return res.status(500).json({ error: 'Failed to find niches.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.marketAnalysis");
+        return res.status(500).json({ error: 'Failed to find niches.', details });
     }
 }
 
@@ -200,8 +216,8 @@ async function handleAffiliatePrograms(req: VercelRequest, res: VercelResponse) 
         return res.status(200).json(JSON.parse(jsonMatch[0]));
     } catch (error: any) {
         console.error("[API_ERROR] Action 'affiliatePrograms':", error);
-        const errorMessage = error.message.includes('API key') ? "errors.apiKeyInvalid" : "errors.marketAnalysis";
-        return res.status(500).json({ error: 'Failed to analyze affiliate programs.', details: errorMessage });
+        const details = getApiErrorMessageKey(error, "errors.marketAnalysis");
+        return res.status(500).json({ error: 'Failed to analyze affiliate programs.', details });
     }
 }
 

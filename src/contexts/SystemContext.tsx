@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import { getFromStorage, saveToStorage } from '../utils/storage';
-import { ProductionJob, ChannelAgent, StrategicDirective, SocialAccount, User, JobStatus, AutomationFlow, Credentials, initialCredentials, CREDENTIALS_STORAGE_KEY, SocialPlatform, SystemBackup } from '../types';
+import { ProductionJob, ChannelAgent, StrategicDirective, SocialAccount, User, JobStatus, AutomationFlow, Credentials, initialCredentials, CREDENTIALS_STORAGE_KEY, SocialPlatform, SystemBackup, ConnectablePlatform } from '../types';
 import { generateVideo } from '../services/geminiService';
 import { AUTOMATION_FLOWS } from '../data/automations';
 import { useTranslation } from '../i18n/useTranslation';
@@ -21,10 +21,10 @@ interface SystemState {
     automationFlows: AutomationFlow[];
     user: User | null;
     setCredentials: (creds: Credentials) => void;
-    addSocialAccount: (platform: SocialPlatform, account: Omit<SocialAccount, 'id'>) => void;
-    updateSocialAccount: (platform: SocialPlatform, account: SocialAccount) => void;
+    addSocialAccount: (platform: ConnectablePlatform, account: Omit<SocialAccount, 'id'>) => void;
+    updateSocialAccount: (platform: ConnectablePlatform, account: SocialAccount) => void;
     updateMultipleSocialAccounts: (accountsToUpdate: (SocialAccount & { platform: SocialPlatform })[]) => void;
-    removeSocialAccount: (platform: SocialPlatform, accountId: string) => void;
+    removeSocialAccount: (platform: ConnectablePlatform, accountId: string) => void;
     addAgent: (agent: ChannelAgent) => void;
     updateAgent: (agent: ChannelAgent) => void;
     addVideoJob: (job: ProductionJob) => void;
@@ -59,7 +59,7 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
     const setCredentials = (creds: Credentials) => setCredentialsState(creds);
 
-    const addSocialAccount = (platform: SocialPlatform, account: Omit<SocialAccount, 'id'>) => {
+    const addSocialAccount = (platform: ConnectablePlatform, account: Omit<SocialAccount, 'id'>) => {
         setCredentialsState(prev => {
             const newAccount = { ...account, password: account.password || '', id: `acc-${Date.now()}` };
             const platformAccounts = prev[platform] || [];
@@ -70,7 +70,7 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         });
     };
 
-    const updateSocialAccount = (platform: SocialPlatform, updatedAccount: SocialAccount) => {
+    const updateSocialAccount = (platform: ConnectablePlatform, updatedAccount: SocialAccount) => {
         setCredentialsState(prev => {
             const platformAccounts = prev[platform] || [];
             const updatedAccounts = platformAccounts.map(acc => acc.id === updatedAccount.id ? updatedAccount : acc);
@@ -97,7 +97,7 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         });
     };
 
-    const removeSocialAccount = (platform: SocialPlatform, accountId: string) => {
+    const removeSocialAccount = (platform: ConnectablePlatform, accountId: string) => {
         setCredentialsState(prev => {
             const platformAccounts = prev[platform] || [];
             const filteredAccounts = platformAccounts.filter(acc => acc.id !== accountId);
@@ -211,7 +211,7 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             currentJobState = { ...currentJobState, status: JobStatus.Failed, progress: 100, statusMessageKey: errorMessageKey };
             updateVideoJob(currentJobState);
         }
-    }, [videoJobs, updateVideoJob]);
+    }, [videoJobs, updateVideoJob, language]);
 
     useEffect(() => {
         const jobToProcess = videoJobs.find(job => job.status === JobStatus.Queued);

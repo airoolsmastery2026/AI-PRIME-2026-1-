@@ -1,21 +1,56 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { ChannelAgent, MarketAnalysisResult, CompetitorIntel, SeoAnalysisResult, ViralShortScript, AgentBlueprint, AssimilatedAsset, ChannelAnalysisReport, PostPackage, DualIncomeNiche, Credentials, AffiliateAnalysisReport } from "../types";
-
-// This file is now fully refactored to use secure, consolidated backend API endpoints.
+import { ApiErrorKeys } from "../utils/errors";
 
 // ===================================================================================
 // NOTE: All functions now call the backend API for security and functionality.
 // The actual Gemini API calls are handled by serverless functions in the /api/ directory.
 // ===================================================================================
 
+/**
+ * A centralized API call handler to reduce boilerplate and standardize error handling.
+ * @param endpoint The backend API endpoint (e.g., '/api/generate').
+ * @param body The request body object.
+ * @param defaultErrorKey The translation key for a fallback error.
+ * @returns The parsed JSON response.
+ */
+async function apiCall<T>(endpoint: string, body: object, defaultErrorKey: string): Promise<T> {
+    try {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+
+        if (!response.ok) {
+            try {
+                const errorData = await response.json();
+                // Use the specific error key from the backend if available
+                throw new Error(errorData.details || defaultErrorKey);
+            } catch {
+                // If parsing JSON fails, handle based on status code
+                if (response.status === 503) throw new Error(ApiErrorKeys.ServerUnavailable);
+                throw new Error(defaultErrorKey);
+            }
+        }
+        return await response.json() as T;
+    } catch (error) {
+        // Log the original error
+        console.error(`API call to ${endpoint} with action '${(body as any).action}' failed:`, error);
+        
+        // If it's already an error with one of our keys, re-throw it
+        if (error instanceof Error && Object.values(ApiErrorKeys).some(k => k === error.message)) {
+            throw error;
+        }
+        // Otherwise, wrap it in a generic network error
+        throw new Error(ApiErrorKeys.NetworkError);
+    }
+}
+
 
 /**
  * Generates a video by calling the backend API.
- * @param prompt The user's prompt for the video.
- * @param aspectRatio The desired aspect ratio.
- * @param is8K Whether to generate in 8K.
- * @param language The target language.
- * @returns A URL for the generated video blob.
+ * This function has custom handling because it expects a blob response.
  */
 export const generateVideo = async (
   prompt: string,
@@ -31,8 +66,13 @@ export const generateVideo = async (
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.details || "errors.videoGen");
+        try {
+            const errorData = await response.json();
+            throw new Error(errorData.details || ApiErrorKeys.VideoGenFailed);
+        } catch {
+             if (response.status === 503) throw new Error(ApiErrorKeys.ServerUnavailable);
+             throw new Error(ApiErrorKeys.VideoGenFailed);
+        }
     }
 
     const videoBlob = await response.blob();
@@ -43,12 +83,12 @@ export const generateVideo = async (
     if (error instanceof Error) {
       throw error;
     }
-    throw new Error("errors.videoGen");
+    throw new Error(ApiErrorKeys.VideoGenFailed);
   }
 };
 
 /**
- * Enhanced video prompt generation is now handled by the backend within the /api/generate endpoint.
+ * Enhanced video prompt generation is now handled by the backend.
  * This function is deprecated on the client-side.
  */
 export const generateEnhancedVideoPrompt = async (userInput: string, language?: 'en' | 'vi'): Promise<string> => {
@@ -56,8 +96,6 @@ export const generateEnhancedVideoPrompt = async (userInput: string, language?: 
     return userInput;
 };
 
-
-// This interface defines the structure for a single affiliate marketing opportunity.
 interface AffiliateOpportunity {
     productName: string;
     affiliateLink: string;
@@ -75,22 +113,16 @@ export const findAffiliateOpportunities = async (
     language?: 'en' | 'vi'
 ): Promise<AffiliateOpportunity[]> => {
     try {
-        const response = await fetch('/api/utility', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'affiliateOpportunities', topic, credentials, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Backend error for affiliate opportunities:", errorData);
-            return []; // Return empty on error to not break the UI flow
-        }
-
-        const data = await response.json();
+        const data = await apiCall<{ opportunities?: AffiliateOpportunity[] }>(
+            '/api/utility',
+            { action: 'affiliateOpportunities', topic, credentials, language },
+            ApiErrorKeys.Generic
+        );
         return data.opportunities || [];
     } catch (error) {
-        console.error("Error calling /api/utility with action 'affiliateOpportunities':", error);
+        // This function is used in non-critical UI flows, so we prevent it from throwing
+        // and breaking the parent component by returning an empty array on any failure.
+        console.error("findAffiliateOpportunities failed:", error);
         return [];
     }
 };
@@ -105,34 +137,15 @@ export const generateCharacterImages = async (
   clothing: string,
   background: string
 ): Promise<string[]> => {
-  try {
-    const response = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'characterImages', prompt, style, pose, clothing, background }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.details || "errors.imageGen");
-    }
-
-    const data = await response.json();
+    const data = await apiCall<{ images?: string[] }>(
+        '/api/generate',
+        { action: 'characterImages', prompt, style, pose, clothing, background },
+        ApiErrorKeys.ImageGenFailed
+    );
     if (data.images && Array.isArray(data.images)) {
         return data.images.map((base64: string) => `data:image/jpeg;base64,${base64}`);
     }
-    
-    throw new Error("Invalid response from server");
-
-  } catch (error) {
-    console.error("Error calling /api/generate with action 'characterImages':", error);
-    if (error instanceof Error) {
-        if (error.message.includes('apiKeyInvalid') || error.message.includes('imageGen')) {
-            throw error;
-        }
-    }
-    throw new Error("errors.imageGen");
-  }
+    throw new Error(ApiErrorKeys.InvalidResponse);
 };
 
 /**
@@ -141,144 +154,61 @@ export const generateCharacterImages = async (
 export const generateAgentBlueprint = async (
     niche: string, 
     language?: 'en' | 'vi',
-    onProgress?: (step: string) => void // Note: onProgress is now illustrative, as backend steps are opaque.
+    onProgress?: (step: string) => void
 ): Promise<AgentBlueprint> => {
-    try {
-        onProgress?.('agents.blueprint.thinking.step1'); // Simulate progress
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'agentBlueprint', niche, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.channelGen");
-        }
-        
-        onProgress?.('agents.blueprint.thinking.step3'); // Simulate near-completion
-        return await response.json();
-
-    } catch (error) {
-        console.error("Error calling /api/generate with action 'agentBlueprint':", error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.channelGen");
-    }
+    onProgress?.('agents.blueprint.thinking.step1');
+    const blueprint = await apiCall<AgentBlueprint>(
+        '/api/generate',
+        { action: 'agentBlueprint', niche, language },
+        ApiErrorKeys.ChannelGenFailed
+    );
+    onProgress?.('agents.blueprint.thinking.step3');
+    return blueprint;
 };
 
 /**
  * Analyzes market trends by calling the backend API.
  */
-export const analyzeMarketTrends = async (topic: string, language?: 'en' | 'vi'): Promise<MarketAnalysisResult> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'marketTrends', topic, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.marketAnalysis");
-        }
-        return await response.json();
-
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'marketTrends':", error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.marketAnalysis");
-    }
+export const analyzeMarketTrends = (topic: string, language?: 'en' | 'vi'): Promise<MarketAnalysisResult> => {
+    return apiCall<MarketAnalysisResult>(
+        '/api/analyze',
+        { action: 'marketTrends', topic, language },
+        ApiErrorKeys.MarketAnalysisFailed
+    );
 };
 
 /**
  * Performs competitor reconnaissance by calling the backend API.
  */
-export const performCompetitorRecon = async (niche: string, language?: 'en' | 'vi'): Promise<CompetitorIntel> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'competitorRecon', niche, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.reconFailed");
-        }
-        return await response.json();
-
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'competitorRecon':", error);
-        if (error instanceof Error) {
-           if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.reconFailed");
-    }
+export const performCompetitorRecon = (niche: string, language?: 'en' | 'vi'): Promise<CompetitorIntel> => {
+    return apiCall<CompetitorIntel>(
+        '/api/analyze',
+        { action: 'competitorRecon', niche, language },
+        ApiErrorKeys.ReconFailed
+    );
 };
 
 /**
  * Gets SEO opportunity analysis by calling the backend API.
  */
-export const getSeoOpportunityAnalysis = async (niche: string, language?: 'en' | 'vi'): Promise<SeoAnalysisResult> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'seo', niche, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.seoAnalysisFailed");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'seo':", error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.seoAnalysisFailed");
-    }
+export const getSeoOpportunityAnalysis = (niche: string, language?: 'en' | 'vi'): Promise<SeoAnalysisResult> => {
+    return apiCall<SeoAnalysisResult>(
+        '/api/analyze',
+        { action: 'seo', niche, language },
+        ApiErrorKeys.SeoAnalysisFailed
+    );
 };
 
 /**
  * Finds emerging niches by calling the backend API.
  */
 export const findEmergingNiches = async (existingTopics: string[], language?: 'en' | 'vi'): Promise<string[]> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'emergingNiches', existingTopics, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.seoAnalysisFailed");
-        }
-        const data = await response.json();
-        return data.niches || [];
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'emergingNiches':", error);
-         if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.seoAnalysisFailed");
-    }
+    const data = await apiCall<{ niches?: string[] }>(
+        '/api/analyze',
+        { action: 'emergingNiches', existingTopics, language },
+        ApiErrorKeys.SeoAnalysisFailed
+    );
+    return data.niches || [];
 };
 
 /**
@@ -300,215 +230,93 @@ export const testGeminiConnection = async (): Promise<boolean> => {
  * Executes a utility task by calling the backend API.
  */
 export const executeUtilityTask = async (taskType: UtilityTask, input: string, credentials: Credentials, language?: 'en' | 'vi'): Promise<string> => {
-    try {
-        const response = await fetch('/api/utility', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'utilityTask', taskType, input, credentials, language }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.generic");
-        }
-        const data = await response.json();
-        return data.result;
-
-    } catch (error) {
-        console.error(`Error calling /api/utility with action 'utilityTask' for '${taskType}':`, error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.generic");
-    }
+    const data = await apiCall<{ result: string }>(
+        '/api/utility',
+        { action: 'utilityTask', taskType, input, credentials, language },
+        ApiErrorKeys.Generic
+    );
+    return data.result;
 };
 
 /**
  * Generates pillar content ideas by calling the backend API.
  */
 export const generatePillarContentIdeas = async (topic: string, language?: 'en' | 'vi'): Promise<string[]> => {
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'pillarContent', topic, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.generic");
-        }
-        const data = await response.json();
-        return data.ideas || [];
-    } catch (error) {
-        console.error(`Error calling /api/generate with action 'pillarContent' for '${topic}':`, error);
-        if (error instanceof Error) {
-           if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.generic");
-    }
+    const data = await apiCall<{ ideas?: string[] }>(
+        '/api/generate',
+        { action: 'pillarContent', topic, language },
+        ApiErrorKeys.Generic
+    );
+    return data.ideas || [];
 };
 
 /**
  * Generates viral shorts scripts by calling the backend API.
  */
-export const generateViralShortsScripts = async (topic: string, language?: 'en' | 'vi'): Promise<ViralShortScript[]> => {
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'viralShorts', topic, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.generic");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error(`Error calling /api/generate with action 'viralShorts' for '${topic}':`, error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.generic");
-    }
+export const generateViralShortsScripts = (topic: string, language?: 'en' | 'vi'): Promise<ViralShortScript[]> => {
+    return apiCall<ViralShortScript[]>(
+        '/api/generate',
+        { action: 'viralShorts', topic, language },
+        ApiErrorKeys.Generic
+    );
 };
 
 /**
  * Generates a platform-specific post package by calling the backend API.
  */
-export const generatePostPackage = async (
+export const generatePostPackage = (
     videoPrompt: string, 
     platform: string | undefined, 
     credentials: Credentials,
     language?: 'en' | 'vi'
 ): Promise<PostPackage> => {
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'postPackage', videoPrompt, platform, credentials, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.generic");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/generate with action 'postPackage':", error);
-         if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.generic");
-    }
+    return apiCall<PostPackage>(
+        '/api/generate',
+        { action: 'postPackage', videoPrompt, platform, credentials, language },
+        ApiErrorKeys.Generic
+    );
 };
 
 /**
  * Assimilates content from a URL by calling the backend API.
  */
-export const assimilateContentFromUrl = async (url: string, language?: 'en' | 'vi'): Promise<AssimilatedAsset> => {
-    try {
-        const response = await fetch('/api/generate', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'assimilateContent', url, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.generic");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/generate with action 'assimilateContent':", error);
-        if (error instanceof Error) {
-            if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.generic");
-    }
+export const assimilateContentFromUrl = (url: string, language?: 'en' | 'vi'): Promise<AssimilatedAsset> => {
+    return apiCall<AssimilatedAsset>(
+        '/api/generate',
+        { action: 'assimilateContent', url, language },
+        ApiErrorKeys.Generic
+    );
 };
 
 /**
  * Analyzes channel performance by calling the backend API.
  */
-export const analyzeChannelPerformance = async (channelUrl: string, language?: 'en' | 'vi'): Promise<ChannelAnalysisReport> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'channel', channelUrl, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.reconFailed");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'channel':", error);
-        if (error instanceof Error) {
-           if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.reconFailed");
-    }
+export const analyzeChannelPerformance = (channelUrl: string, language?: 'en' | 'vi'): Promise<ChannelAnalysisReport> => {
+    return apiCall<ChannelAnalysisReport>(
+        '/api/analyze',
+        { action: 'channel', channelUrl, language },
+        ApiErrorKeys.ReconFailed
+    );
 };
 
 /**
  * Finds dual-income niches by calling the backend API.
  */
-export const findDualIncomeNiches = async (language?: 'en' | 'vi'): Promise<DualIncomeNiche[]> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'dualIncomeNiches', language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.marketAnalysis");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'dualIncomeNiches':", error);
-         if (error instanceof Error) {
-           if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.marketAnalysis");
-    }
+export const findDualIncomeNiches = (language?: 'en' | 'vi'): Promise<DualIncomeNiche[]> => {
+    return apiCall<DualIncomeNiche[]>(
+        '/api/analyze',
+        { action: 'dualIncomeNiches', language },
+        ApiErrorKeys.MarketAnalysisFailed
+    );
 };
 
 /**
  * Analyzes affiliate programs by calling the backend API.
  */
-export const analyzeAffiliatePrograms = async (niche: string, language?: 'en' | 'vi'): Promise<AffiliateAnalysisReport> => {
-    try {
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'affiliatePrograms', niche, language }),
-        });
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.details || "errors.marketAnalysis");
-        }
-        return await response.json();
-    } catch (error) {
-        console.error("Error calling /api/analyze with action 'affiliatePrograms':", error);
-        if (error instanceof Error) {
-           if (error.message.includes('apiKeyInvalid')) {
-                 throw new Error("errors.apiKeyInvalid");
-            }
-        }
-        throw new Error("errors.marketAnalysis");
-    }
+export const analyzeAffiliatePrograms = (niche: string, language?: 'en' | 'vi'): Promise<AffiliateAnalysisReport> => {
+    return apiCall<AffiliateAnalysisReport>(
+        '/api/analyze',
+        { action: 'affiliatePrograms', niche, language },
+        ApiErrorKeys.MarketAnalysisFailed
+    );
 };
