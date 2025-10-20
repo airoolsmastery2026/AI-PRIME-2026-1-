@@ -143,33 +143,6 @@ async function handleEmergingNiches(req: VercelRequest, res: VercelResponse) {
     }
 }
 
-// --- HANDLER for Channel Analysis ---
-async function handleChannel(req: VercelRequest, res: VercelResponse) {
-     try {
-        const { channelUrl, language } = req.body;
-        if (!channelUrl) return res.status(400).json({ error: 'Missing channelUrl parameter.' });
-        const apiKey = process.env.API_KEY;
-        if (!apiKey) return res.status(500).json({ error: "API_KEY is not configured.", details: "errors.apiKeyMissing" });
-        
-        const ai = new GoogleGenAI({ apiKey });
-        const response = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: `Perform a deep analysis of the YouTube channel at: ${channelUrl}`,
-            config: { systemInstruction: `You are 'Oracle', a world-class YouTube strategist... Your output MUST be ONLY a valid JSON object.${getLanguageInstruction(language)}`, tools: [{ googleSearch: {} }] },
-        });
-        
-        const rawText = (response.text ?? '').trim();
-        const jsonMatch = rawText.match(/(\{[\s\S]*\})/);
-        if (!jsonMatch) throw new Error("No JSON object found in Gemini response for channel analysis.");
-
-        return res.status(200).json(JSON.parse(jsonMatch[0]));
-    } catch (error: any) {
-        console.error("[API_ERROR] Action 'channel':", error);
-        const details = getApiErrorMessageKey(error, "errors.reconFailed");
-        return res.status(500).json({ error: 'Failed to analyze channel.', details });
-    }
-}
-
 // --- HANDLER for Dual Income Niches ---
 async function handleDualIncomeNiches(req: VercelRequest, res: VercelResponse) {
     try {
@@ -238,8 +211,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             return handleSeo(req, res);
         case 'emergingNiches':
             return handleEmergingNiches(req, res);
-        case 'channel':
-            return handleChannel(req, res);
         case 'dualIncomeNiches':
             return handleDualIncomeNiches(req, res);
         case 'affiliatePrograms':

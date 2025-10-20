@@ -118,7 +118,6 @@
     "tabPerformance": "Hiệu suất",
     "tabMarket": "Mô phỏng Thị trường",
     "tabSeo": "Nexus SEO",
-    "tabInsight": "Cỗ máy Insight",
     "tabDualIncome": "Săn Thu nhập Kép",
     "tabAffiliate": "Tình báo Liên kết",
     "tabCoach": "Huấn luyện viên AI",
@@ -246,44 +245,6 @@
     "volume": "Lượng tìm kiếm",
     "competition": "Cạnh tranh",
     "virality": "Tính lan truyền"
-  },
-  "insightEngine": {
-    "title": "Cỗ máy Insight",
-    "description": "Phân tích bất kỳ kênh YouTube nào để giải cấu trúc công thức thành công của họ, xác định các yếu tố lan truyền và tạo ra các chiến lược đối phó có thể hành động.",
-    "placeholder": "Nhập URL kênh YouTube (ví dụ: https://www.youtube.com/@mkbhd)",
-    "button": "Phân tích Kênh",
-    "buttonLoading": "Đang phân tích...",
-    "placeholderPrompt": "Cung cấp URL kênh để bắt đầu phân tích.",
-    "thinking": {
-      "step1": "Bắt đầu quét kênh",
-      "step2": "Phân tích DNA hiệu suất",
-      "step3": "Giải cấu trúc công thức nội dung",
-      "step4": "Xác định các yếu tố lan truyền",
-      "step5": "Xây dựng chỉ thị chiến lược"
-    },
-    "reportTitle": "Báo cáo Tình báo",
-    "tabDna": "DNA Hiệu suất",
-    "tabFormula": "Công thức Nội dung",
-    "tabVectors": "Yếu tố Lan truyền",
-    "tabDirectives": "Chỉ thị",
-    "dna": {
-      "subs": "Người đăng ký",
-      "views": "Lượt xem trung bình",
-      "engagement": "Tương tác"
-    },
-    "formula": {
-      "formats": "Định dạng Phổ biến",
-      "topics": "Chủ đề Cốt lõi",
-      "titles": "Mẫu Tiêu đề",
-      "thumbnails": "Tâm lý Thumbnail"
-    },
-    "vectors": {
-      "reason": "Lý do Thành công"
-    },
-    "directives": {
-      "rationale": "Lý do",
-      "sendToAgent": "Gửi đến Hàng chờ"
-    }
   },
   "aiUtilities": {
     "summarizerTitle": "Tóm tắt bằng AI",
@@ -533,6 +494,42 @@
         "prompt": "Bạn có muốn mình tạo luôn file cấu hình huấn luyện và hướng dẫn nhập vào Google Studio AI không?",
         "button": "Tạo File Cấu hình",
         "response": "Tính năng đang được phát triển. Một tệp cấu hình .json/.yaml có thể tải xuống sẽ được tạo ở đây để hợp lý hóa quy trình huấn luyện agent trong Google Studio AI."
+    },
+    "prompts": {
+      "title": "V. Thư viện Prompt cho Đặc vụ AI",
+      "description": "Một bộ sưu tập các prompt mạnh mẽ để huấn luyện đặc vụ AI của bạn hoặc sử dụng trực tiếp trong Command Nexus cho các tác vụ cụ thể.",
+      "p1": {
+        "title": "Trình tạo Lịch đăng nội dung",
+        "command": "Hãy đóng vai một chuyên gia chiến lược mạng xã hội của tôi. Tạo lịch đăng nội dung trong 30 ngày cho [lĩnh vực của tôi]. Bao gồm các loại bài đăng (reel, carousel, thread), phần mở đầu (hook) và ngày đăng cụ thể."
+      },
+      "p2": {
+        "title": "Trình tạo Hook viral",
+        "command": "Hãy tạo cho tôi 20 câu hook viral dành cho TikTok và Instagram Reels về chủ đề [chủ đề]. Mỗi hook phải đủ cuốn hút để khiến người xem dừng lại khi đang lướt."
+      },
+      "p3": {
+        "title": "Trình viết kịch bản Reels",
+        "command": "Hãy viết kịch bản video 30 giây dựa trên ý tưởng sau: [nhập ý tưởng]. Giữ văn phong tự nhiên, gần gũi, có một hook thật ấn tượng và lời kêu gọi hành động (CTA) rõ ràng."
+      },
+      "p4": {
+        "title": "Trình viết Caption & Hashtag",
+        "command": "Hãy viết 5 caption thật cuốn hút cho Instagram về chủ đề [chủ đề]. Thêm các hashtag phù hợp để tăng độ tiếp cận và tương tác."
+      },
+      "p5": {
+        "title": "Trình tạo ý tưởng hình ảnh",
+        "command": "Hãy mô tả cách thể hiện ý tưởng này bằng hình ảnh trong một video ngắn hoặc carousel. Bao gồm bối cảnh quay, màu sắc chủ đạo và ý tưởng B-roll (cảnh phụ minh họa)."
+      },
+      "p6": {
+        "title": "Trình tái sử dụng nội dung (Repurpose Master)",
+        "command": "Hãy lấy video YouTube hoặc bài blog này [dán URL/nội dung] và chuyển hóa nó thành 5 ý tưởng video ngắn + 3 concept carousel dành cho mạng xã hội."
+      },
+      "p7": {
+        "title": "Trình huấn luyện Giọng thương hiệu",
+        "command": "Hãy phân tích đoạn văn sau [dán một bài đăng cũ của bạn] và mô tả giọng điệu thương hiệu của tôi. Sau đó, hãy sử dụng đúng phong cách và tông giọng này cho tất cả nội dung về sau."
+      },
+      "p8": {
+        "title": "Trợ lý Phân tích nội dung",
+        "command": "Dựa trên hiệu suất tháng này [dán bản tóm tắt số liệu], hãy cho tôi biết loại nội dung nào tôi nên đăng nhiều hơn trong tháng tới."
+      }
     }
   },
   "errors": {

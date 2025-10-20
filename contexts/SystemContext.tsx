@@ -45,7 +45,23 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     const { language } = useTranslation();
     const [credentials, setCredentialsState] = useState<Credentials>(() => getFromStorage(CREDENTIALS_STORAGE_KEY, initialCredentials));
     const [agents, setAgentsState] = useState<ChannelAgent[]>(() => getFromStorage(AGENTS_STORAGE_KEY, []));
-    const [videoJobs, setVideoJobsState] = useState<ProductionJob[]>(() => getFromStorage(VIDEO_JOBS_STORAGE_KEY, []));
+    const [videoJobs, setVideoJobsState] = useState<ProductionJob[]>(() => {
+        const existingJobs = getFromStorage<ProductionJob[]>(VIDEO_JOBS_STORAGE_KEY, []);
+        const newJob: ProductionJob = {
+            id: 'job-req-static-12345', // Use a static ID to prevent re-adding on re-renders/hot-reloads
+            prompt: 'A short, engaging video showcasing the benefits of AI PRIME 2026 for small businesses',
+            aspectRatio: '16:9',
+            is8K: false,
+            language: 'en',
+            status: JobStatus.Queued,
+            progress: 10,
+        };
+        // Check if job already exists to avoid duplication
+        if (!existingJobs.some(j => j.id === newJob.id)) {
+            return [newJob, ...existingJobs];
+        }
+        return existingJobs;
+    });
     const [directives, setDirectivesState] = useState<StrategicDirective[]>(() => getFromStorage(DIRECTIVES_QUEUE_KEY, []));
     const [user, setUserState] = useState<User | null>(() => getFromStorage(USER_STORAGE_KEY, null));
     const [automationFlows, setAutomationFlowsState] = useState<AutomationFlow[]>(() => getFromStorage(AUTOMATION_FLOWS_STORAGE_KEY, AUTOMATION_FLOWS));
@@ -211,7 +227,7 @@ export const SystemProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             currentJobState = { ...currentJobState, status: JobStatus.Failed, progress: 100, statusMessageKey: errorMessageKey };
             updateVideoJob(currentJobState);
         }
-    }, [videoJobs, updateVideoJob]);
+    }, [videoJobs, updateVideoJob, language]);
 
     useEffect(() => {
         const jobToProcess = videoJobs.find(job => job.status === JobStatus.Queued);

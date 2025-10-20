@@ -7,7 +7,7 @@ import { Analytics } from './components/Analytics';
 import { Agents } from './components/Agents';
 import { ContentMatrix } from './components/ContentMatrix';
 import { CommandNexus } from './components/CommandNexus';
-import { QuantumCoreControl } from './components/QuantumCoreControl';
+import QuantumCoreControl from './components/QuantumCoreControl';
 import { Accounts } from './components/Accounts';
 import { Pilot } from './components/Pilot';
 import { SystemMonitor } from './components/SystemMonitor';

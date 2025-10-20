@@ -118,7 +118,6 @@
     "tabPerformance": "Performance",
     "tabMarket": "Market Simulation",
     "tabSeo": "SEO Nexus",
-    "tabInsight": "Insight Engine",
     "tabDualIncome": "Dual-Income Hunter",
     "tabAffiliate": "Affiliate Intelligence",
     "tabCoach": "AI Coach",
@@ -246,44 +245,6 @@
     "volume": "Volume",
     "competition": "Competition",
     "virality": "Virality"
-  },
-  "insightEngine": {
-    "title": "Insight Engine",
-    "description": "Analyze any YouTube channel to deconstruct their success formula, identify viral vectors, and generate actionable counter-strategies.",
-    "placeholder": "Enter YouTube Channel URL (e.g., https://www.youtube.com/@mkbhd)",
-    "button": "Analyze Channel",
-    "buttonLoading": "Analyzing...",
-    "placeholderPrompt": "Provide a channel URL to begin analysis.",
-    "thinking": {
-      "step1": "Initiating Channel Scan",
-      "step2": "Analyzing Performance DNA",
-      "step3": "Deconstructing Content Formula",
-      "step4": "Identifying Viral Vectors",
-      "step5": "Formulating Strategic Directives"
-    },
-    "reportTitle": "Intelligence Report",
-    "tabDna": "Performance DNA",
-    "tabFormula": "Content Formula",
-    "tabVectors": "Viral Vectors",
-    "tabDirectives": "Directives",
-    "dna": {
-      "subs": "Subscribers",
-      "views": "Avg. Views",
-      "engagement": "Engagement"
-    },
-    "formula": {
-      "formats": "Common Formats",
-      "topics": "Core Topics",
-      "titles": "Title Patterns",
-      "thumbnails": "Thumbnail Psychology"
-    },
-    "vectors": {
-      "reason": "Reason for Success"
-    },
-    "directives": {
-      "rationale": "Rationale",
-      "sendToAgent": "Send to Agent Queue"
-    }
   },
   "aiUtilities": {
     "summarizerTitle": "AI Summarizer",
@@ -533,6 +494,42 @@
       "prompt": "Would you like me to create the complete training configuration file for Google Studio AI and provide instructions on how to import it?",
       "button": "Generate Configuration File",
       "response": "Feature in development. A downloadable .json/.yaml configuration file will be generated here to streamline the agent training process in Google Studio AI."
+    },
+    "prompts": {
+      "title": "V. AI Agent Prompt Library",
+      "description": "A collection of powerful prompts to train your AI agents or use directly in the Command Nexus for specific tasks.",
+      "p1": {
+        "title": "Content Calendar Generator",
+        "command": "Act as my social media strategist. Create a 30-day content calendar for [my niche]. Include post types (reel, carousel, thread), hooks, and specific posting dates."
+      },
+      "p2": {
+        "title": "Viral Hook Generator",
+        "command": "Generate 20 viral hooks for TikTok and Instagram Reels on the topic of [topic]. Each hook must be engaging enough to make viewers stop scrolling."
+      },
+      "p3": {
+        "title": "Reels Script Writer",
+        "command": "Write a 30-second video script based on the following idea: [enter idea]. Keep the style natural and relatable, with a strong hook and a clear call to action (CTA)."
+      },
+      "p4": {
+        "title": "Caption & Hashtag Writer",
+        "command": "Write 5 engaging Instagram captions on the topic of [topic]. Add relevant hashtags to increase reach and engagement."
+      },
+      "p5": {
+        "title": "Visual Idea Generator",
+        "command": "Describe how to visually represent this idea in a short video or carousel. Include shooting context, main colors, and B-roll ideas."
+      },
+      "p6": {
+        "title": "Content Repurpose Master",
+        "command": "Take this YouTube video or blog post [paste URL/content] and transform it into 5 short video ideas + 3 carousel concepts for social media."
+      },
+      "p7": {
+        "title": "Brand Voice Trainer",
+        "command": "Analyze the following text [paste a sample of your old content] and describe my brand voice. Then, use this exact style and tone for all future content."
+      },
+      "p8": {
+        "title": "Content Analysis Assistant",
+        "command": "Based on this month's performance [paste a summary of metrics], tell me what type of content I should post more of next month."
+      }
     }
   },
   "errors": {

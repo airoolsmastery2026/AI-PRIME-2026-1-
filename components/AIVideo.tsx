@@ -12,6 +12,8 @@ import { CogIcon } from './icons/CogIcon';
 import { CheckCircleIcon } from './icons/CheckCircleIcon';
 import { XCircleIcon } from './icons/XCircleIcon';
 import { CalendarIcon } from './icons/CalendarIcon';
+import { EditIcon } from './icons/EditIcon';
+import { AIVideoEditor } from './AIVideoEditor';
 
 const JobProgressBar: React.FC<{ status: JobStatus; progress: number; statusMessageKey?: string }> = ({ status, progress, statusMessageKey }) => {
     const { t } = useTranslation();
@@ -180,7 +182,11 @@ const VideoGeneratorForm: React.FC = () => {
     );
 }
 
-const ProductionQueue: React.FC = () => {
+interface ProductionQueueProps {
+    onLoadInEditor: (videoUrl: string) => void;
+}
+
+const ProductionQueue: React.FC<ProductionQueueProps> = ({ onLoadInEditor }) => {
     const { t } = useTranslation();
     const { videoJobs } = useSystem();
     const [selectedJob, setSelectedJob] = useState<ProductionJob | null>(null);
@@ -285,13 +291,20 @@ const ProductionQueue: React.FC = () => {
                                         </div>
                                     )}
                                     {selectedJob.status === 'Published' && selectedJob.videoUrl && (
-                                        <div className="mt-4">
+                                        <div className="mt-4 flex gap-2">
                                             <button 
                                                 onClick={handleDownload}
-                                                className="w-full flex items-center justify-center gap-2 bg-green-600/80 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-all text-sm"
+                                                className="flex-1 flex items-center justify-center gap-2 bg-green-600/80 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition-all text-sm"
                                             >
                                                 <DownloadIcon className="w-4 h-4" />
                                                 {t('aiVideo.downloadVideo')}
+                                            </button>
+                                            <button
+                                                onClick={() => onLoadInEditor(selectedJob.videoUrl!)}
+                                                className="flex-1 flex items-center justify-center gap-2 bg-cyan-600/80 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-md transition-all text-sm"
+                                            >
+                                                <EditIcon className="w-4 h-4" />
+                                                {t('aiVideo.loadInEditor')}
                                             </button>
                                         </div>
                                     )}
@@ -312,10 +325,17 @@ const ProductionQueue: React.FC = () => {
 export const AIVideo: React.FC = () => {
     const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState('queue');
+    const [editorVideoSrc, setEditorVideoSrc] = useState<string | null>(null);
+
+    const handleLoadInEditor = (videoUrl: string) => {
+        setEditorVideoSrc(videoUrl);
+        setActiveTab('editor');
+    };
 
     const tabs = [
         { id: 'queue', label: t('aiVideo.tabs.queue'), icon: <VideoIcon /> },
-        { id: 'character', label: t('aiVideo.tabs.character'), icon: <UserCircleIcon /> }
+        { id: 'character', label: t('aiVideo.tabs.character'), icon: <UserCircleIcon /> },
+        { id: 'editor', label: t('aiVideo.tabs.editor'), icon: <EditIcon /> },
     ];
 
     return (
@@ -332,15 +352,15 @@ export const AIVideo: React.FC = () => {
                         onClick={() => setActiveTab(tab.id)}
                         className={`flex items-center gap-2 px-6 py-3 text-sm font-semibold transition-colors ${activeTab === tab.id ? 'border-b-2 border-cyan-300 text-cyan-300' : 'text-gray-400 hover:text-white'}`}
                     >
-                        {/* FIX: Explicitly cast the icon to React.ReactElement<any> to satisfy TypeScript's strict checks for React.cloneElement, resolving the overload error. */}
                         {React.cloneElement(tab.icon as React.ReactElement<any>, { className: 'h-5 w-5' })}
                         {tab.label}
                     </button>
                 ))}
             </div>
 
-            {activeTab === 'queue' && <ProductionQueue />}
+            {activeTab === 'queue' && <ProductionQueue onLoadInEditor={handleLoadInEditor} />}
             {activeTab === 'character' && <AIVideoCharacterCreator />}
+            {activeTab === 'editor' && <AIVideoEditor initialVideoSrc={editorVideoSrc} />}
         </div>
     );
 };

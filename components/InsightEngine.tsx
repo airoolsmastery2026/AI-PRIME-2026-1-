@@ -135,12 +135,48 @@ const ReportDisplay: React.FC<{ report: ChannelAnalysisReport }> = ({ report }) 
 
 const YOUTUBE_URL_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/(channel\/|c\/|user\/|@)[\w-]+|youtu\.be\/[\w-]+)(\/.*)?$/;
 
+const mrBeastReport: ChannelAnalysisReport = {
+    channelName: "MrBeast",
+    performanceDna: {
+        subscriberCount: "250M+",
+        averageViews: "150M+",
+        estimatedEngagementRate: 'High',
+        overallSummary: "MrBeast's channel is a global phenomenon, defined by high-stakes challenges, philanthropic stunts, and unprecedented production value. The content model is built on viral generosity and extreme spectacle, creating a highly engaged and massive audience.",
+    },
+    contentFormula: {
+        commonVideoFormats: ["Extreme Challenges ($1 vs $1,000,000)", "Last To Leave Challenges", "Large-Scale Philanthropy (curing blindness, building wells)", "Recreating Popular Media (Squid Game)"],
+        coreTopicClusters: ["Money & Finance", "Philanthropy", "Entertainment", "Social Experiments"],
+        titlePatterns: ["I Survived X Days", "$X vs $Y", "Last To Leave X Wins $Y", "I Built/Bought X"],
+        thumbnailPsychology: "High-contrast, emotionally charged faces (shock, excitement), clear visual representation of the core challenge, and bold, minimal text.",
+    },
+    viralVectors: [
+        {
+            videoTitle: "$456,000 Squid Game In Real Life!",
+            reasonForSuccess: "Capitalized on a massive global trend with an extremely high-production value recreation, creating an unmissable cultural event.",
+        },
+        {
+            videoTitle: "I Spent 50 Hours Buried Alive",
+            reasonForSuccess: "Extreme personal endurance challenge that evokes curiosity and suspense, combined with a simple, powerful title and thumbnail.",
+        }
+    ],
+    strategicDirectives: [
+        {
+            directive: "Develop a 'Micro-Stakes' challenge series to increase content velocity while maintaining the core brand DNA.",
+            rationale: "Lower-cost challenges can be produced faster, filling gaps between mega-productions and capturing a wider audience with more frequent uploads.",
+        },
+        {
+            directive: "Launch an agent to analyze non-English speaking markets for potential content localization and franchising.",
+            rationale: "MrBeast's dubbed channels are highly successful. Proactively identifying and building for new markets can secure a first-mover advantage and exponential growth.",
+        }
+    ]
+};
+
 export const InsightEngine: React.FC = () => {
     const { t, language } = useTranslation();
-    const [url, setUrl] = useState('');
+    const [url, setUrl] = useState('https://www.youtube.com/@MrBeast');
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string|null>(null);
-    const [report, setReport] = useState<ChannelAnalysisReport | null>(null);
+    const [report, setReport] = useState<ChannelAnalysisReport | null>(mrBeastReport);
     const [progress, setProgress] = useState(0);
 
     const isUrlValid = useMemo(() => YOUTUBE_URL_REGEX.test(url), [url]);

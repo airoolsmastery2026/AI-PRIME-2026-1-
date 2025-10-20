@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { ChannelAnalysisReport, StrategicDirective } from '../types';
 import { analyzeChannelPerformance } from '../services/geminiService';
@@ -133,6 +133,8 @@ const ReportDisplay: React.FC<{ report: ChannelAnalysisReport }> = ({ report }) 
     );
 };
 
+// FIX: Memoize regex to avoid re-compiling on every render.
+const YOUTUBE_URL_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/(channel\/|c\/|user\/|@)[\w-]+|youtu\.be\/[\w-]+)(\/.*)?$/;
 
 export const InsightEngine: React.FC = () => {
     const { t, language } = useTranslation();
@@ -142,8 +144,10 @@ export const InsightEngine: React.FC = () => {
     const [report, setReport] = useState<ChannelAnalysisReport | null>(null);
     const [progress, setProgress] = useState(0);
 
+    const isUrlValid = useMemo(() => YOUTUBE_URL_REGEX.test(url), [url]);
+
     const handleAnalyze = async () => {
-        if (!url.trim()) return;
+        if (!url.trim() || !isUrlValid) return;
         setIsLoading(true);
         setError(null);
         setReport(null);
@@ -183,7 +187,7 @@ export const InsightEngine: React.FC = () => {
                 />
                 <button
                     onClick={handleAnalyze}
-                    disabled={isLoading || !url.trim()}
+                    disabled={isLoading || !isUrlValid}
                     className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-md transition-all disabled:bg-gray-600 disabled:cursor-not-allowed flex-shrink-0"
                 >
                     {isLoading ? t('insightEngine.buttonLoading') : t('insightEngine.button')}

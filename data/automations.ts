@@ -2,6 +2,21 @@ import { AutomationFlow, FlowStepType } from '../types';
 
 export const AUTOMATION_FLOWS: AutomationFlow[] = [
     {
+        id: 'flow-22',
+        nameKey: 'automations.flow22.name',
+        descriptionKey: 'automations.flow22.description',
+        status: 'Inactive',
+        steps: [
+            { id: 1, nameKey: 'automations.flow22.step1', type: FlowStepType.Input, service: 'Google Drive' },
+            { id: 2, nameKey: 'automations.flow22.step2', type: FlowStepType.Processing, service: 'AI Video Pipeline' },
+            { id: 3, nameKey: 'automations.flow22.step3', type: FlowStepType.Output, service: 'YouTube API' },
+            { id: 4, nameKey: 'automations.flow22.step4', type: FlowStepType.Processing, service: 'AI Video Pipeline' },
+            { id: 5, nameKey: 'automations.flow22.step5', type: FlowStepType.Output, service: 'TikTok API' },
+            { id: 6, nameKey: 'automations.flow22.step6', type: FlowStepType.Processing, service: 'AI Video Pipeline' },
+            { id: 7, nameKey: 'automations.flow22.step7', type: FlowStepType.Output, service: 'Instagram API' },
+        ],
+    },
+    {
         id: 'flow-19',
         nameKey: 'automations.flow19.name',
         descriptionKey: 'automations.flow19.description',

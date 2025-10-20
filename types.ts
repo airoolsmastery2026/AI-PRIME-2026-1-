@@ -275,3 +275,9 @@ export interface AffiliateAnalysisReport {
     topPrograms: AffiliateProgramAnalysis[];
     strategicRecommendations: string;
 }
+
+// FIX: Add missing Chapter interface.
+export interface Chapter {
+  time: number;
+  title: string;
+}

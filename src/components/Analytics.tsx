@@ -12,8 +12,6 @@ import { AffiliateIcon } from './icons/AffiliateIcon';
 import { AffiliateIntelligence } from './AffiliateIntelligence';
 import { CoachIcon } from './icons/CoachIcon';
 import { AIContentCoach } from './AIContentCoach';
-import { InsightEngineIcon } from './icons/InsightEngineIcon';
-import { InsightEngine } from './InsightEngine';
 
 const AnalyticsCard: React.FC<{ title: string; children: React.ReactNode, className?: string }> = ({ title, children, className = "" }) => (
     <div className={`hud-border p-4 ${className}`}>
@@ -55,7 +53,6 @@ export const Analytics: React.FC = () => {
         { id: 'performance', label: t('analytics.tabPerformance'), icon: <AnalyticsIcon /> },
         { id: 'market', label: t('analytics.tabMarket'), icon: <SimulationIcon /> },
         { id: 'seo', label: t('analytics.tabSeo'), icon: <SeoIcon /> },
-        { id: 'insight', label: t('analytics.tabInsight'), icon: <InsightEngineIcon /> },
         { id: 'dual-income', label: t('analytics.tabDualIncome'), icon: <MoneyIcon /> },
         { id: 'affiliate', label: t('analytics.tabAffiliate'), icon: <AffiliateIcon /> },
         { id: 'coach', label: t('analytics.tabCoach'), icon: <CoachIcon /> },
@@ -67,8 +64,6 @@ export const Analytics: React.FC = () => {
                 return <MarketSimulation initialTopic={initialTopic} onAnalysisComplete={() => setInitialTopic('')} />;
             case 'seo':
                 return <SeoNexus initialTopic={initialTopic} onAnalysisComplete={() => setInitialTopic('')} />;
-            case 'insight':
-                return <InsightEngine />;
             case 'dual-income':
                 return <DualIncomeHunter />;
             case 'affiliate':

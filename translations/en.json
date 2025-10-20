@@ -88,9 +88,11 @@
     "aiGeneratedPrompt": "AI-Generated Prompt",
     "downloadVideo": "Download Video",
     "noJobSelected": "Select a job to view details.",
+    "loadInEditor": "Load in Editor",
     "tabs": {
       "queue": "Production Queue",
-      "character": "Character Creator"
+      "character": "Character Creator",
+      "editor": "AI Editor"
     },
     "generating": {
       "enhancing": "Enhancing prompt...",
@@ -107,6 +109,22 @@
         "backgroundLabel": "Background",
         "generateButton": "Generate 4 Images",
         "generatingButton": "Generating..."
+    },
+    "editor": {
+        "title": "AI Video Editor",
+        "uploadPrompt": "Upload a video file",
+        "noVideo": "Upload a video or load one from the production queue to begin.",
+        "playbackSpeed": "Playback Speed",
+        "chapters": "Chapters",
+        "addChapter": "Add Chapter",
+        "addChapterPrompt": "Enter chapter title:",
+        "effects": "AI Effects",
+        "transitions": "Transitions",
+        "music": "Background Music",
+        "text": "Text & Titles",
+        "aiPrompt": "Describe the edit you want to make...",
+        "apply": "Apply with AI",
+        "devNotice": "Feature in development."
     }
   },
   "resultDisplay": {
@@ -499,6 +517,42 @@
       "prompt": "Would you like me to create the complete training configuration file for Google Studio AI and provide instructions on how to import it?",
       "button": "Generate Configuration File",
       "response": "Feature in development. A downloadable .json/.yaml configuration file will be generated here to streamline the agent training process in Google Studio AI."
+    },
+    "prompts": {
+      "title": "V. AI Agent Prompt Library",
+      "description": "A collection of powerful prompts to train your AI agents or use directly in the Command Nexus for specific tasks.",
+      "p1": {
+        "title": "Content Calendar Generator",
+        "command": "Act as my social media strategist. Create a 30-day content calendar for [my niche]. Include post types (reel, carousel, thread), hooks, and specific posting dates."
+      },
+      "p2": {
+        "title": "Viral Hook Generator",
+        "command": "Generate 20 viral hooks for TikTok and Instagram Reels on the topic of [topic]. Each hook must be engaging enough to make viewers stop scrolling."
+      },
+      "p3": {
+        "title": "Reels Script Writer",
+        "command": "Write a 30-second video script based on the following idea: [enter idea]. Keep the style natural and relatable, with a strong hook and a clear call to action (CTA)."
+      },
+      "p4": {
+        "title": "Caption & Hashtag Writer",
+        "command": "Write 5 engaging Instagram captions on the topic of [topic]. Add relevant hashtags to increase reach and engagement."
+      },
+      "p5": {
+        "title": "Visual Idea Generator",
+        "command": "Describe how to visually represent this idea in a short video or carousel. Include shooting context, main colors, and B-roll ideas."
+      },
+      "p6": {
+        "title": "Content Repurpose Master",
+        "command": "Take this YouTube video or blog post [paste URL/content] and transform it into 5 short video ideas + 3 carousel concepts for social media."
+      },
+      "p7": {
+        "title": "Brand Voice Trainer",
+        "command": "Analyze the following text [paste a sample of your old content] and describe my brand voice. Then, use this exact style and tone for all future content."
+      },
+      "p8": {
+        "title": "Content Analysis Assistant",
+        "command": "Based on this month's performance [paste a summary of metrics], tell me what type of content I should post more of next month."
+      }
     }
   },
   "errors": {
@@ -613,6 +667,17 @@
       "step2": "Analyze Underperformance",
       "step3": "Check Trends",
       "step4": "Adjust Strategy"
+    },
+    "flow22": {
+      "name": "Cross-Platform Content Scheduler",
+      "description": "Takes a script from Google Drive, generates platform-optimized videos for YouTube, TikTok, and Instagram, then schedules the posts.",
+      "step1": "Get Script from Google Drive",
+      "step2": "Generate YouTube Video (16:9)",
+      "step3": "Schedule YouTube Post",
+      "step4": "Generate TikTok Video (9:16)",
+      "step5": "Schedule TikTok Post",
+      "step6": "Generate Instagram Video (9:16)",
+      "step7": "Schedule Instagram Post"
     }
   }
 }
