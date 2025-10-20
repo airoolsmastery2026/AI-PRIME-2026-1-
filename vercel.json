@@ -1,7 +1,12 @@
 {
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@vercel/node@2.15.12" },
+    { "src": "index.html", "use": "@vercel/static@1.0.3" }
+  ],
   "functions": {
-    "api/*.ts": {
-      "runtime": "nodejs20.x",
+    "api/**/*.ts": {
+      "runtime": "@vercel/node@2.15.12",
       "maxDuration": 45
     }
   },
@@ -11,6 +16,9 @@
       "destination": "/index.html"
     }
   ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
   "headers": [
     {
       "source": "/(.*)",
