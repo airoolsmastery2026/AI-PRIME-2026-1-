@@ -1,9 +1,4 @@
 {
-  "builds": [
-    { "src": "api/generate.ts", "use": "@vercel/node" },
-    { "src": "api/analyze.ts", "use": "@vercel/node" },
-    { "src": "api/utility.ts", "use": "@vercel/node" }
-  ],
   "functions": {
     "api/generate.ts": {
       "maxDuration": 45
