@@ -14,16 +14,16 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 const fetchTranslations = async (lang: Language): Promise<any> => {
   try {
     if (lang === 'vi') {
-      const module = await import('./vi.json');
+      const module = await import('../translations/vi.json');
       return module.default;
     }
     // Default to English
-    const module = await import('./en.json');
+    const module = await import('../translations/en.json');
     return module.default;
   } catch (error) {
     console.error(`Failed to load translations for '${lang}', falling back to 'en'.`, error);
     try {
-        const module = await import('./en.json');
+        const module = await import('../translations/en.json');
         return module.default;
     } catch (fallbackError) {
         console.error(`Failed to load fallback English translations.`, fallbackError);

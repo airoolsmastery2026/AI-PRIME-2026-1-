@@ -307,6 +307,19 @@
     "noAccounts": "Không có tài khoản nào được kết nối cho nền tảng này.",
     "edit": "Sửa",
     "addAccount": "Thêm Tài khoản Mới",
+    "affiliateLinkGenerator": {
+      "title": "Trình tạo Liên kết Affiliate AI",
+      "description": "Nhập mô tả thị trường ngách hoặc sản phẩm để tạo liên kết affiliate cho các nền tảng đã kết nối của bạn.",
+      "inputLabel": "Mô tả Niche / Sản phẩm",
+      "inputPlaceholder": "Ví dụ: 'Máy ảnh vlogging giá rẻ tốt nhất dưới 10 triệu'",
+      "platformsLabel": "Chọn Nền tảng",
+      "noPlatforms": "Chưa có nền tảng affiliate nào được kết nối. Thêm một vài nền tảng ở trên để bắt đầu.",
+      "generateButton": "Tạo Liên kết",
+      "generatingButton": "Đang tạo...",
+      "resultsTitle": "Liên kết đã tạo",
+      "copyButton": "Sao chép",
+      "copied": "Đã chép!"
+    },
     "linker": {
         "platformHeader": "Nền tảng",
         "usernameHeader": "Tên người dùng",

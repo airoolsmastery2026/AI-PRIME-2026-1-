@@ -1,5 +1,4 @@
 import { GoogleGenAI, Type } from "@google/genai";
-// FIX: Add ChannelAnalysisReport to imports.
 import { ChannelAgent, MarketAnalysisResult, CompetitorIntel, SeoAnalysisResult, ViralShortScript, AgentBlueprint, AssimilatedAsset, ChannelAnalysisReport, PostPackage, DualIncomeNiche, Credentials, AffiliateAnalysisReport } from "../types";
 import { ApiErrorKeys } from "../utils/errors";
 
@@ -289,7 +288,6 @@ export const assimilateContentFromUrl = (url: string, language?: 'en' | 'vi'): P
     );
 };
 
-// FIX: Add missing analyzeChannelPerformance function.
 /**
  * Analyzes channel performance by calling the backend API.
  */
@@ -320,5 +318,21 @@ export const analyzeAffiliatePrograms = (niche: string, language?: 'en' | 'vi'):
         '/api/analyze',
         { action: 'affiliatePrograms', niche, language },
         ApiErrorKeys.MarketAnalysisFailed
+    );
+};
+
+/**
+ * Generates affiliate links for a given niche/product description.
+ */
+export const generateAffiliateLinks = (
+    nicheOrProduct: string,
+    selectedPlatforms: string[],
+    credentials: Credentials,
+    language?: 'en' | 'vi'
+): Promise<{ links: { platform: string, link: string }[] }> => {
+    return apiCall<{ links: { platform: string, link: string }[] }>(
+        '/api/utility',
+        { action: 'generateAffiliateLink', nicheOrProduct, selectedPlatforms, credentials, language },
+        ApiErrorKeys.Generic
     );
 };

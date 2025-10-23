@@ -307,6 +307,19 @@
     "noAccounts": "No accounts connected for this platform.",
     "edit": "Edit",
     "addAccount": "Add New Account",
+    "affiliateLinkGenerator": {
+      "title": "AI Affiliate Link Generator",
+      "description": "Enter a niche or product description to generate affiliate links for your connected platforms.",
+      "inputLabel": "Niche / Product Description",
+      "inputPlaceholder": "e.g., 'The best budget vlogging camera under $500'",
+      "platformsLabel": "Select Platforms",
+      "noPlatforms": "No connected affiliate platforms. Add some above to get started.",
+      "generateButton": "Generate Links",
+      "generatingButton": "Generating...",
+      "resultsTitle": "Generated Links",
+      "copyButton": "Copy",
+      "copied": "Copied!"
+    },
     "linker": {
         "platformHeader": "Platform",
         "usernameHeader": "Username",

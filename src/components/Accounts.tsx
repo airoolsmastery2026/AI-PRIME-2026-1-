@@ -4,6 +4,7 @@ import { useSystem } from '../contexts/SystemContext';
 import { testGeminiConnection } from '../services/geminiService';
 import { AccountCard } from './AccountCard';
 import { AccountConnector } from './AccountConnector';
+import { AffiliateLinkGenerator } from './AffiliateLinkGenerator';
 
 // Icons
 import { YouTubeIcon } from './icons/YouTubeIcon';
@@ -337,6 +338,11 @@ export const Accounts: React.FC = () => {
                          </button>
                     </div>
                 </Section>
+                
+                <div className="mb-8">
+                    <AffiliateLinkGenerator />
+                </div>
+                
                 <Section title={t('accounts.sectionSocial')}>
                     {socialPlatforms.map(p => (
                         <AccountCard

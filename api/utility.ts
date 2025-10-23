@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { GoogleGenAI } from "@google/genai";
+import { GoogleGenAI, Type } from "@google/genai";
 import { Credentials } from '../src/types';
 
 // Helper to add language instructions to prompts
@@ -145,6 +145,63 @@ async function handleNexusCommand(req: VercelRequest, res: VercelResponse) {
     }
 }
 
+// --- HANDLER for Affiliate Link Generation (POST) ---
+async function handleGenerateAffiliateLink(req: VercelRequest, res: VercelResponse) {
+    try {
+        const { nicheOrProduct, selectedPlatforms, credentials, language } = req.body as { nicheOrProduct: string, selectedPlatforms: string[], credentials: Credentials, language?: 'en' | 'vi' };
+        if (!nicheOrProduct || !selectedPlatforms || !credentials) {
+            return res.status(400).json({ error: 'Missing required parameters.' });
+        }
+        
+        const apiKey = process.env.API_KEY;
+        if (!apiKey) {
+            return res.status(500).json({ error: "API_KEY is not configured.", details: "errors.apiKeyMissing" });
+        }
+        
+        const ai = new GoogleGenAI({ apiKey });
+
+        const platformDetails = selectedPlatforms.map(platform => {
+            const account = credentials[platform as keyof Credentials]?.[0];
+            return account ? `- ${platform} (Affiliate ID: ${account.username})` : null;
+        }).filter(Boolean).join('\n');
+
+        if (!platformDetails) {
+             return res.status(400).json({ error: 'No valid affiliate platforms selected or configured.' });
+        }
+
+        const response = await ai.models.generateContent({
+            model: "gemini-2.5-flash",
+            contents: `Generate affiliate links for the following niche/product: "${nicheOrProduct}"`,
+            config: {
+                systemInstruction: `You are an expert affiliate link generator. Your task is to create plausible-looking affiliate links for a given product/niche on specified platforms using their affiliate IDs.
+                - Use your search capabilities to find a real, relevant product page for the given niche/product to base the link on.
+                - Use the following platform details:\n${platformDetails}
+                - For each platform, create a single, correctly formatted affiliate link. For Amazon, use 'amzn.to'. For ClickBank, use 'hop.clickbank.net'. For others, create a realistic link structure.
+                - Your output MUST be ONLY a valid JSON array of objects with the structure: \`[{ "platform": "platform_name", "link": "generated_affiliate_link" }]\`. Do not add any other text.
+                ${getLanguageInstruction(language)}`,
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: Type.ARRAY,
+                    items: {
+                        type: Type.OBJECT,
+                        properties: {
+                            platform: { type: Type.STRING },
+                            link: { type: Type.STRING },
+                        },
+                    },
+                },
+                tools: [{ googleSearch: {} }]
+            },
+        });
+        
+        const jsonText = (response.text ?? '[]').trim();
+        return res.status(200).json({ links: JSON.parse(jsonText) });
+    } catch (error: any) {
+        console.error("[API_ERROR] Action 'generateAffiliateLink':", error);
+        return res.status(500).json({ error: 'Failed to generate affiliate links.', details: "errors.generic" });
+    }
+}
+
 // --- MAIN HANDLER ---
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method === 'GET') {
@@ -163,6 +220,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 return handleAffiliateOpportunities(req, res);
             case 'nexusCommand':
                 return handleNexusCommand(req, res);
+            case 'generateAffiliateLink':
+                return handleGenerateAffiliateLink(req, res);
         }
     }
     

@@ -74,5 +74,5 @@ self.addEventListener('activate', (event: any) => {
     })
   );
 });
-// FIX: Add an export to treat this file as a module and avoid global scope conflicts.
+
 export {};
