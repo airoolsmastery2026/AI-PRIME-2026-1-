@@ -14,10 +14,10 @@ export const LanguageContext = createContext<LanguageContextType | undefined>(un
 const loadTranslations = (lang: Language): Promise<any> => {
   switch (lang) {
     case 'vi':
-      return import('../translations/vi.json');
+      return import('./vi.json');
     case 'en':
     default:
-      return import('../translations/en.json');
+      return import('./en.json');
   }
 };
 
