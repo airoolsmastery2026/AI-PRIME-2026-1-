@@ -7,7 +7,6 @@ import { Analytics } from './components/Analytics';
 import { Agents } from './components/Agents';
 import { ContentMatrix } from './components/ContentMatrix';
 import { CommandNexus } from './components/CommandNexus';
-// Fix: Changed import from default to named import for QuantumCoreControl to match its export.
 import { QuantumCoreControl } from './components/QuantumCoreControl';
 import { Accounts } from './components/Accounts';
 import { Pilot } from './components/Pilot';

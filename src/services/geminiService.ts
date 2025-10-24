@@ -127,6 +127,23 @@ export const findAffiliateOpportunities = async (
 };
 
 /**
+ * Generates affiliate links for a given niche/product description.
+ */
+export const generateAffiliateLinks = (
+    nicheOrProduct: string,
+    selectedPlatforms: string[],
+    credentials: Credentials,
+    language?: 'en' | 'vi'
+): Promise<{ links: { platform: string, link: string }[] }> => {
+    return apiCall<{ links: { platform: string, link: string }[] }>(
+        '/api/utility',
+        { action: 'generateAffiliateLink', nicheOrProduct, selectedPlatforms, credentials, language },
+        ApiErrorKeys.Generic
+    );
+};
+
+
+/**
  * Generates character images by calling the backend API.
  */
 export const generateCharacterImages = async (
@@ -317,21 +334,5 @@ export const analyzeAffiliatePrograms = (niche: string, language?: 'en' | 'vi'):
         '/api/analyze',
         { action: 'affiliatePrograms', niche, language },
         ApiErrorKeys.MarketAnalysisFailed
-    );
-};
-
-/**
- * Generates affiliate links for a given niche/product description.
- */
-export const generateAffiliateLinks = (
-    nicheOrProduct: string,
-    selectedPlatforms: string[],
-    credentials: Credentials,
-    language?: 'en' | 'vi'
-): Promise<{ links: { platform: string, link: string }[] }> => {
-    return apiCall<{ links: { platform: string, link: string }[] }>(
-        '/api/utility',
-        { action: 'generateAffiliateLink', nicheOrProduct, selectedPlatforms, credentials, language },
-        ApiErrorKeys.Generic
     );
 };

@@ -14,11 +14,11 @@ body {
   background: #101014;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4f46e5; /* Indigo */
+  background: #6366f1; /* Indigo */
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366f1; /* Lighter Indigo */
+  background: #818cf8; /* Lighter Indigo */
 }
 
 .font-sans {
