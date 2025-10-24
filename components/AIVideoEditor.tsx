@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { Chapter } from '../types';
 import { UploadIcon } from './icons/UploadIcon';
-import { MagicWandIcon } from './icons/MagicWandIcon';
 import { MusicNoteIcon } from './icons/MusicNoteIcon';
 import { FilmIcon } from './icons/FilmIcon';
 import { TypeIcon } from './icons/TypeIcon';
+import { MagicWandIcon } from './icons/MagicWandIcon';
 
 const formatTime = (seconds: number) => {
     const date = new Date(0);
