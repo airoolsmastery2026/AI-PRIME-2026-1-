@@ -133,7 +133,6 @@ const ReportDisplay: React.FC<{ report: ChannelAnalysisReport }> = ({ report }) 
     );
 };
 
-// FIX: Memoize regex to avoid re-compiling on every render.
 const YOUTUBE_URL_REGEX = /^(https?:\/\/)?(www\.)?(youtube\.com\/(channel\/|c\/|user\/|@)[\w-]+|youtu\.be\/[\w-]+)(\/.*)?$/;
 
 export const InsightEngine: React.FC = () => {
