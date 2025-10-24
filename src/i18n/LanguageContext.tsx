@@ -30,19 +30,26 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     let isMounted = true;
-    loadTranslations(language)
-      .then(module => {
-        if (isMounted) {
-          setTranslations(module.default);
+    const fetchTranslations = async () => {
+        try {
+            const module = await loadTranslations(language);
+            if (isMounted) {
+                setTranslations(module.default);
+            }
+        } catch (error) {
+            console.error(`Failed to load translations for '${language}', falling back to 'en'.`, error);
+            if (isMounted && language !== 'en') {
+                try {
+                    const fallbackModule = await loadTranslations('en');
+                    setTranslations(fallbackModule.default);
+                } catch (fallbackError) {
+                    console.error("Failed to load fallback English translations.", fallbackError);
+                }
+            }
         }
-      })
-      .catch(error => {
-        console.error(`Failed to load translations for '${language}', falling back to 'en'.`, error);
-        if (isMounted && language !== 'en') {
-          // Attempt to load English as a fallback
-          loadTranslations('en').then(module => setTranslations(module.default));
-        }
-      });
+    };
+    
+    fetchTranslations();
       
     return () => { isMounted = false; }
   }, [language]);
@@ -53,6 +60,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   };
 
   const t = useCallback((key: string, options?: { [key: string]: string | number }): string => {
+    if (Object.keys(translations).length === 0) {
+      return key; // Return key if translations are not loaded yet
+    }
     const keys = key.split('.');
     let result = translations;
     for (const k of keys) {

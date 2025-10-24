@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
-import serviceCode from '../services/geminiService.ts?raw';
+import serviceCode from '../services/geminiService?raw';
 
 declare const monaco: any;
 
@@ -12,31 +12,29 @@ export const CoreEditor: React.FC = () => {
     const editorInstance = useRef<any>(null);
 
     useEffect(() => {
-        if (editorRef.current && typeof monaco !== 'undefined') {
-            if (!editorInstance.current) {
-                (window as any).require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' }});
-                (window as any).require(['vs/editor/editor.main'], () => {
-                     editorInstance.current = monaco.editor.create(editorRef.current!, {
-                        value: code,
-                        language: 'typescript',
-                        theme: 'vs-dark',
-                        automaticLayout: true,
-                        minimap: { enabled: false },
-                        scrollbar: {
-                           verticalScrollbarSize: 8,
-                           horizontalScrollbarSize: 8,
-                        },
-                        background: '#101014'
-                    });
-
-                    editorInstance.current.getModel().onDidChangeContent(() => {
-                        const editorValue = editorInstance.current.getModel().getValue();
-                        if (editorValue !== code) {
-                           setCode(editorValue);
-                        }
-                    });
+        if (editorRef.current && typeof monaco !== 'undefined' && !editorInstance.current) {
+            (window as any).require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' }});
+            (window as any).require(['vs/editor/editor.main'], () => {
+                 editorInstance.current = monaco.editor.create(editorRef.current!, {
+                    value: code,
+                    language: 'typescript',
+                    theme: 'vs-dark',
+                    automaticLayout: true,
+                    minimap: { enabled: false },
+                    scrollbar: {
+                       verticalScrollbarSize: 8,
+                       horizontalScrollbarSize: 8,
+                    },
+                    background: '#101014'
                 });
-            }
+
+                editorInstance.current.getModel().onDidChangeContent(() => {
+                    const editorValue = editorInstance.current.getModel().getValue();
+                    if (editorValue !== code) {
+                       setCode(editorValue);
+                    }
+                });
+            });
         }
         
         return () => {

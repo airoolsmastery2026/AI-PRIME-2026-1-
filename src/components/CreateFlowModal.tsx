@@ -90,6 +90,7 @@ export const CreateFlowModal: React.FC<CreateFlowModalProps> = ({ isOpen, onClos
                                <input type="text" placeholder={t('createFlowModal.stepServicePlaceholder')} value={step.service} onChange={e => handleStepChange(index, 'service', e.target.value)} className="w-full bg-gray-900/80 border border-gray-600 rounded p-1.5 text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none"/>
                                 <div className="flex items-center gap-2">
                                     <select value={step.type} onChange={e => handleStepChange(index, 'type', e.target.value)} className="w-full bg-gray-900/80 border border-gray-600 rounded p-1.5 text-sm focus:ring-1 focus:ring-purple-500 focus:outline-none">
+                                        {/* FIX: Use a different variable name in map to avoid type inference issues. */}
                                         {Object.values(FlowStepType).map(typeValue => <option key={typeValue} value={typeValue}>{typeValue}</option>)}
                                     </select>
                                     <button type="button" onClick={() => removeStep(index)} className="text-red-500 hover:text-red-400 p-1">&times;</button>
