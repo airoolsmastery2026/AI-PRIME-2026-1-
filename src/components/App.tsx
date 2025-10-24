@@ -1,26 +1,31 @@
 
+
 import React, { useState, useEffect } from 'react';
-import { Sidebar } from './components/Sidebar';
-import { Dashboard } from './components/Dashboard';
-import { Automation } from './components/Automation';
-import { AIVideo } from './components/AIVideo';
-import { Analytics } from './components/Analytics';
-import { Agents } from './components/Agents';
-import { ContentMatrix } from './components/ContentMatrix';
-import { CommandNexus } from './components/CommandNexus';
-import QuantumCoreControl from './components/QuantumCoreControl';
-import { Accounts } from './components/Accounts';
-import { Pilot } from './components/Pilot';
-import { SystemMonitor } from './components/SystemMonitor';
-import { Settings } from './components/Settings';
-import { CoreEditor } from './components/CoreEditor';
-import { MenuIcon } from './components/icons/MenuIcon';
-import { useSystem } from './contexts/SystemContext';
+import { Sidebar } from './Sidebar';
+import { Dashboard } from './Dashboard';
+import { Automation } from './Automation';
+import { AIVideo } from './AIVideo';
+import { Analytics } from './Analytics';
+import { Agents } from './Agents';
+import { ContentMatrix } from './ContentMatrix';
+import { CommandNexus } from './CommandNexus';
+// Fix: Changed default import to named import for QuantumCoreControl to match its export.
+import { QuantumCoreControl } from './QuantumCoreControl';
+import { Accounts } from './Accounts';
+import { Pilot } from './Pilot';
+import { SystemMonitor } from './SystemMonitor';
+import { Settings } from './Settings';
+import { CoreEditor } from './CoreEditor';
+import { MenuIcon } from './icons/MenuIcon';
+import { useSystem } from '../contexts/SystemContext';
+import { AIChat } from './AIChat';
+import { ChatBubbleIcon } from './icons/ChatBubbleIcon';
 
 const App: React.FC = () => {
     const { user, login, logout } = useSystem();
     const [activeView, setActiveView] = useState('dashboard');
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -80,6 +85,14 @@ const App: React.FC = () => {
                 </main>
             </div>
             <SystemMonitor />
+            <button
+                onClick={() => setIsChatOpen(true)}
+                className="fixed bottom-16 right-4 md:bottom-8 md:right-8 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-30 ai-chat-bubble"
+                aria-label="Open AI Assistant"
+            >
+                <ChatBubbleIcon />
+            </button>
+            <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
         </div>
     );
 };

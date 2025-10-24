@@ -11,24 +11,13 @@ interface LanguageContextType {
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const fetchTranslations = async (lang: Language): Promise<any> => {
-  try {
-    if (lang === 'vi') {
-      const module = await import('./vi.json');
-      return module.default;
-    }
-    // Default to English
-    const module = await import('./en.json');
-    return module.default;
-  } catch (error) {
-    console.error(`Failed to load translations for '${lang}', falling back to 'en'.`, error);
-    try {
-        const module = await import('./en.json');
-        return module.default;
-    } catch (fallbackError) {
-        console.error(`Failed to load fallback English translations.`, fallbackError);
-        return {};
-    }
+const loadTranslations = (lang: Language): Promise<any> => {
+  switch (lang) {
+    case 'vi':
+      return import('../translations/vi.json');
+    case 'en':
+    default:
+      return import('../translations/en.json');
   }
 };
 
@@ -41,11 +30,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     let isMounted = true;
-    fetchTranslations(language).then(data => {
-        if(isMounted) {
-            setTranslations(data);
+    loadTranslations(language)
+      .then(module => {
+        if (isMounted) {
+          setTranslations(module.default);
         }
-    });
+      })
+      .catch(error => {
+        console.error(`Failed to load translations for '${language}', falling back to 'en'.`, error);
+        if (isMounted && language !== 'en') {
+          // Attempt to load English as a fallback
+          loadTranslations('en').then(module => setTranslations(module.default));
+        }
+      });
+      
     return () => { isMounted = false; }
   }, [language]);
 

@@ -134,6 +134,7 @@
   },
   "analytics": {
     "tabPerformance": "Hiệu suất",
+    "tabInsight": "Công cụ Insight",
     "tabMarket": "Mô phỏng Thị trường",
     "tabSeo": "Nexus SEO",
     "tabDualIncome": "Săn Thu nhập Kép",
@@ -574,6 +575,44 @@
     "reconFailed": "Trinh sát đối thủ thất bại. Vui lòng thử lại.",
     "seoAnalysisFailed": "Phân tích SEO thất bại. Mô hình đã trả về phản hồi không mong muốn.",
     "generic": "Đã xảy ra lỗi không xác định với dịch vụ AI."
+  },
+  "insightEngine": {
+    "title": "Công cụ Insight",
+    "description": "Phân tích bất kỳ kênh YouTube nào để khám phá DNA hiệu suất, công thức nội dung và các yếu tố lan truyền của họ. Sử dụng những hiểu biết này để tạo ra các chỉ thị chiến lược có thể hành động cho các đặc vụ của riêng bạn.",
+    "placeholder": "Nhập URL kênh YouTube (ví dụ: https://www.youtube.com/@MrBeast)",
+    "button": "Phân tích Kênh",
+    "buttonLoading": "Đang phân tích...",
+    "placeholderPrompt": "Nhập URL kênh để bắt đầu phân tích.",
+    "reportTitle": "Báo cáo Phân tích Kênh",
+    "thinking": {
+      "step1": "Bắt đầu Quét Kênh",
+      "step2": "Phân tích DNA Hiệu suất",
+      "step3": "Phân tích Công thức Nội dung",
+      "step4": "Xác định Yếu tố Lan truyền",
+      "step5": "Xây dựng Chỉ thị Chiến lược"
+    },
+    "tabDna": "DNA Hiệu suất",
+    "tabFormula": "Công thức Nội dung",
+    "tabVectors": "Yếu tố Lan truyền",
+    "tabDirectives": "Chỉ thị",
+    "dna": {
+      "subs": "Người đăng ký",
+      "views": "Lượt xem TB",
+      "engagement": "Tương tác"
+    },
+    "formula": {
+      "formats": "Định dạng Phổ biến",
+      "topics": "Cụm chủ đề",
+      "titles": "Mẫu Tiêu đề",
+      "thumbnails": "Tâm lý Thumbnail"
+    },
+    "vectors": {
+      "reason": "Lý do Thành công"
+    },
+    "directives": {
+      "rationale": "Lý do",
+      "sendToAgent": "Gửi đến Hàng chờ Đặc vụ"
+    }
   },
   "automations": {
     "flow19": {

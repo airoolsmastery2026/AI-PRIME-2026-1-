@@ -276,8 +276,22 @@ export interface AffiliateAnalysisReport {
     strategicRecommendations: string;
 }
 
-// FIX: Add missing Chapter interface.
 export interface Chapter {
   time: number;
   title: string;
+}
+
+export type ChatRole = 'user' | 'model';
+
+export interface ChatMessage {
+    role: ChatRole;
+    parts: { 
+        text?: string; 
+        image?: {
+            inlineData: {
+                data: string; // base64
+                mimeType: string;
+            }
+        }
+    }[];
 }

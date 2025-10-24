@@ -1,29 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
+import serviceCode from '../services/geminiService.ts?raw';
 
 declare const monaco: any;
 
 export const CoreEditor: React.FC = () => {
     const { t } = useTranslation();
     const editorRef = useRef<HTMLDivElement>(null);
-    const [code, setCode] = useState<string>('// Loading Core Logic...');
+    const [code, setCode] = useState<string>(serviceCode);
     const [isSaving, setIsSaving] = useState<boolean>(false);
     const editorInstance = useRef<any>(null);
 
     useEffect(() => {
-        // Fetch the content of geminiService.ts to display in the editor
-        fetch('/services/geminiService.ts')
-            .then(response => response.text())
-            .then(text => setCode(text))
-            .catch(err => {
-                console.error("Failed to fetch geminiService.ts", err);
-                setCode('// Error loading core logic file. Please check the console.');
-            });
-    }, []);
-
-    useEffect(() => {
         if (editorRef.current && typeof monaco !== 'undefined') {
-            // Ensure monaco is loaded
             if (!editorInstance.current) {
                 (window as any).require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.33.0/min/vs' }});
                 (window as any).require(['vs/editor/editor.main'], () => {
@@ -40,13 +29,11 @@ export const CoreEditor: React.FC = () => {
                         background: '#101014'
                     });
 
-                    // Update state when editor content changes
                     editorInstance.current.getModel().onDidChangeContent(() => {
                         setCode(editorInstance.current.getModel().getValue());
                     });
                 });
             } else {
-                 // If editor already exists, just update its value
                  if(editorInstance.current.getModel().getValue() !== code) {
                     editorInstance.current.getModel().setValue(code);
                  }
@@ -54,13 +41,19 @@ export const CoreEditor: React.FC = () => {
         }
         
         return () => {
-            // Dispose editor instance on component unmount
             if(editorInstance.current) {
                 editorInstance.current.dispose();
                 editorInstance.current = null;
             }
         };
-    }, [code]); // Re-run effect if initial code changes
+    }, []); // Run only once
+
+    useEffect(() => {
+        if (editorInstance.current && editorInstance.current.getModel().getValue() !== code) {
+            editorInstance.current.getModel().setValue(code);
+        }
+    }, [code]);
+
 
     const handleSave = () => {
         setIsSaving(true);
@@ -68,8 +61,6 @@ export const CoreEditor: React.FC = () => {
         console.log(code);
         setTimeout(() => {
             setIsSaving(false);
-            // In a real backend scenario, this would trigger a server-side process.
-            // For now, it's a simulation to show functionality.
             alert("Core logic saved. In a real backend environment, this would be recompiled and deployed.");
         }, 1500);
     };

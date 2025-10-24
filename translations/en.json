@@ -134,6 +134,7 @@
   },
   "analytics": {
     "tabPerformance": "Performance",
+    "tabInsight": "Insight Engine",
     "tabMarket": "Market Simulation",
     "tabSeo": "SEO Nexus",
     "tabDualIncome": "Dual-Income Hunter",
@@ -583,6 +584,44 @@
     "reconFailed": "Competitor reconnaissance failed. Please try again.",
     "seoAnalysisFailed": "SEO analysis failed. The model returned an unexpected response.",
     "generic": "An unknown error occurred with the AI service."
+  },
+  "insightEngine": {
+    "title": "Insight Engine",
+    "description": "Deconstruct any YouTube channel to uncover its performance DNA, content formula, and viral vectors. Use these insights to generate actionable strategic directives for your own agents.",
+    "placeholder": "Enter a YouTube channel URL (e.g., https://www.youtube.com/@MrBeast)",
+    "button": "Analyze Channel",
+    "buttonLoading": "Analyzing...",
+    "placeholderPrompt": "Enter a channel URL to begin analysis.",
+    "reportTitle": "Channel Analysis Report",
+    "thinking": {
+      "step1": "Initiating Channel Scan",
+      "step2": "Analyzing Performance DNA",
+      "step3": "Deconstructing Content Formula",
+      "step4": "Identifying Viral Vectors",
+      "step5": "Formulating Strategic Directives"
+    },
+    "tabDna": "Performance DNA",
+    "tabFormula": "Content Formula",
+    "tabVectors": "Viral Vectors",
+    "tabDirectives": "Directives",
+    "dna": {
+      "subs": "Subscribers",
+      "views": "Avg. Views",
+      "engagement": "Engagement"
+    },
+    "formula": {
+      "formats": "Common Formats",
+      "topics": "Topic Clusters",
+      "titles": "Title Patterns",
+      "thumbnails": "Thumbnail Psychology"
+    },
+    "vectors": {
+      "reason": "Reason for Success"
+    },
+    "directives": {
+      "rationale": "Rationale",
+      "sendToAgent": "Send to Agent Queue"
+    }
   },
   "automations": {
     "flow19": {

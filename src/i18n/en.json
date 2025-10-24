@@ -88,9 +88,11 @@
     "aiGeneratedPrompt": "AI-Generated Prompt",
     "downloadVideo": "Download Video",
     "noJobSelected": "Select a job to view details.",
+    "loadInEditor": "Load in Editor",
     "tabs": {
       "queue": "Production Queue",
-      "character": "Character Creator"
+      "character": "Character Creator",
+      "editor": "AI Editor"
     },
     "generating": {
       "enhancing": "Enhancing prompt...",
@@ -107,6 +109,22 @@
         "backgroundLabel": "Background",
         "generateButton": "Generate 4 Images",
         "generatingButton": "Generating..."
+    },
+    "editor": {
+        "title": "AI Video Editor",
+        "uploadPrompt": "Upload a video file",
+        "noVideo": "Upload a video or load one from the production queue to begin.",
+        "playbackSpeed": "Playback Speed",
+        "chapters": "Chapters",
+        "addChapter": "Add Chapter",
+        "addChapterPrompt": "Enter chapter title:",
+        "effects": "AI Effects",
+        "transitions": "Transitions",
+        "music": "Background Music",
+        "text": "Text & Titles",
+        "aiPrompt": "Describe the edit you want to make...",
+        "apply": "Apply with AI",
+        "devNotice": "Feature in development."
     }
   },
   "resultDisplay": {
@@ -116,6 +134,7 @@
   },
   "analytics": {
     "tabPerformance": "Performance",
+    "tabInsight": "Insight Engine",
     "tabMarket": "Market Simulation",
     "tabSeo": "SEO Nexus",
     "tabDualIncome": "Dual-Income Hunter",
@@ -289,6 +308,19 @@
     "noAccounts": "No accounts connected for this platform.",
     "edit": "Edit",
     "addAccount": "Add New Account",
+    "affiliateLinkGenerator": {
+      "title": "AI Affiliate Link Generator",
+      "description": "Enter a niche or product description to generate affiliate links for your connected platforms.",
+      "inputLabel": "Niche / Product Description",
+      "inputPlaceholder": "e.g., 'The best budget vlogging camera under $500'",
+      "platformsLabel": "Select Platforms",
+      "noPlatforms": "No connected affiliate platforms. Add some above to get started.",
+      "generateButton": "Generate Links",
+      "generatingButton": "Generating...",
+      "resultsTitle": "Generated Links",
+      "copyButton": "Copy",
+      "copied": "Copied!"
+    },
     "linker": {
         "platformHeader": "Platform",
         "usernameHeader": "Username",
@@ -387,6 +419,11 @@
             "success": "Backup restored successfully. The application will now reload.",
             "error": "Failed to import backup. The file may be invalid or corrupted."
         }
+    },
+    "apiManagement": {
+        "title": "API Key Management",
+        "description": "For security, your Gemini API Key must be configured as an environment variable named `API_KEY` in your Vercel project settings. The application reads this key on the server-side, ensuring it is never exposed to the browser.",
+        "button": "Vercel Env Var Docs"
     }
   },
   "coreEditor": {
@@ -537,12 +574,54 @@
     "apiKeyInvalid": "Gemini API key is not valid. Please check your key and try again.",
     "imageGen": "Image generation failed. The model may be unavailable or the prompt was rejected.",
     "videoGen": "Video generation failed. This can be due to prompt rejection, model unavailability, or other service errors.",
-    "quotaExceeded": "Video generation quota exceeded. Please check your usage limits.",
+    "quotaExceeded": "API quota exceeded. Please check your usage limits or billing.",
+    "promptRejected": "The prompt was rejected due to safety policies. Please modify your input.",
+    "serverUnavailable": "The AI service is temporarily unavailable. Please try again later.",
+    "networkError": "A network error occurred. Please check your connection and try again.",
+    "invalidResponse": "The application received an invalid response from the server.",
     "channelGen": "Failed to generate agent blueprint. The model may have returned an invalid response.",
     "marketAnalysis": "Failed to analyze market trends. The model may be unavailable.",
     "reconFailed": "Competitor reconnaissance failed. Please try again.",
     "seoAnalysisFailed": "SEO analysis failed. The model returned an unexpected response.",
     "generic": "An unknown error occurred with the AI service."
+  },
+  "insightEngine": {
+    "title": "Insight Engine",
+    "description": "Deconstruct any YouTube channel to uncover its performance DNA, content formula, and viral vectors. Use these insights to generate actionable strategic directives for your own agents.",
+    "placeholder": "Enter a YouTube channel URL (e.g., https://www.youtube.com/@MrBeast)",
+    "button": "Analyze Channel",
+    "buttonLoading": "Analyzing...",
+    "placeholderPrompt": "Enter a channel URL to begin analysis.",
+    "reportTitle": "Channel Analysis Report",
+    "thinking": {
+      "step1": "Initiating Channel Scan",
+      "step2": "Analyzing Performance DNA",
+      "step3": "Deconstructing Content Formula",
+      "step4": "Identifying Viral Vectors",
+      "step5": "Formulating Strategic Directives"
+    },
+    "tabDna": "Performance DNA",
+    "tabFormula": "Content Formula",
+    "tabVectors": "Viral Vectors",
+    "tabDirectives": "Directives",
+    "dna": {
+      "subs": "Subscribers",
+      "views": "Avg. Views",
+      "engagement": "Engagement"
+    },
+    "formula": {
+      "formats": "Common Formats",
+      "topics": "Topic Clusters",
+      "titles": "Title Patterns",
+      "thumbnails": "Thumbnail Psychology"
+    },
+    "vectors": {
+      "reason": "Reason for Success"
+    },
+    "directives": {
+      "rationale": "Rationale",
+      "sendToAgent": "Send to Agent Queue"
+    }
   },
   "automations": {
     "flow19": {
@@ -640,6 +719,17 @@
       "step2": "Analyze Underperformance",
       "step3": "Check Trends",
       "step4": "Adjust Strategy"
+    },
+    "flow22": {
+      "name": "Cross-Platform Content Scheduler",
+      "description": "Takes a script from Google Drive, generates platform-optimized videos for YouTube, TikTok, and Instagram, then schedules the posts.",
+      "step1": "Get Script from Google Drive",
+      "step2": "Generate YouTube Video (16:9)",
+      "step3": "Schedule YouTube Post",
+      "step4": "Generate TikTok Video (9:16)",
+      "step5": "Schedule TikTok Post",
+      "step6": "Generate Instagram Video (9:16)",
+      "step7": "Schedule Instagram Post"
     }
   }
 }

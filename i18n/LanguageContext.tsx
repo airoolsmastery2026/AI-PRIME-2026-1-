@@ -11,30 +11,13 @@ interface LanguageContextType {
 
 export const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const fetchTranslations = async (lang: Language): Promise<any> => {
-  const fetchLangFile = async (l: Language) => {
-    const response = await fetch(`/translations/${l}.json`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  };
-
-  try {
-    return await fetchLangFile(lang);
-  } catch (error) {
-    console.error(`Failed to fetch translations for '${lang}':`, error);
-    // If the requested language fails, fall back to English
-    if (lang !== 'en') {
-      console.warn(`Falling back to English translations.`);
-      try {
-        return await fetchLangFile('en');
-      } catch (fallbackError) {
-        console.error(`Failed to fetch fallback English translations:`, fallbackError);
-      }
-    }
-    // Return empty object if all attempts fail to prevent app crash
-    return {};
+const loadTranslations = (lang: Language): Promise<any> => {
+  switch (lang) {
+    case 'vi':
+      return import('../translations/vi.json');
+    case 'en':
+    default:
+      return import('../translations/en.json');
   }
 };
 
@@ -47,11 +30,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   useEffect(() => {
     let isMounted = true;
-    fetchTranslations(language).then(data => {
-        if(isMounted) {
-            setTranslations(data);
+    loadTranslations(language)
+      .then(module => {
+        if (isMounted) {
+          setTranslations(module.default);
         }
-    });
+      })
+      .catch(error => {
+        console.error(`Failed to load translations for '${language}', falling back to 'en'.`, error);
+        if (isMounted && language !== 'en') {
+          // Attempt to load English as a fallback
+          loadTranslations('en').then(module => setTranslations(module.default));
+        }
+      });
+      
     return () => { isMounted = false; }
   }, [language]);
 

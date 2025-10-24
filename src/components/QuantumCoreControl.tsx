@@ -12,7 +12,7 @@ interface QuantumCoreControlProps {
     onLogin: (provider: LoginProvider, remember: boolean) => void;
 }
 
-const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin }) => {
+export const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin }) => {
     const { t } = useTranslation();
     const [isLoggingIn, setIsLoggingIn] = useState<string | null>(null);
     const [rememberMe, setRememberMe] = useState(true);
@@ -117,5 +117,3 @@ const QuantumCoreControl: React.FC<QuantumCoreControlProps> = ({ onLogin }) => {
         </div>
     );
 };
-
-export default QuantumCoreControl;

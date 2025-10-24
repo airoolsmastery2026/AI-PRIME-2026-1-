@@ -121,10 +121,10 @@ export const CommandNexus: React.FC = () => {
         setIsLoading(true);
 
         try {
-            const res = await fetch('/api/nexus-command', {
+            const res = await fetch('/api/utility', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ message: input, language }),
+                body: JSON.stringify({ action: 'nexusCommand', message: input, language }),
             });
 
             if (!res.ok) {
@@ -155,7 +155,7 @@ export const CommandNexus: React.FC = () => {
             case 'user':
                 return <div key={index} className="flex justify-end"><p className="bg-purple-600/50 p-2 rounded-lg max-w-lg">{msg.text}</p></div>;
             case 'ai':
-                return <div key={index} className="flex justify-start"><pre className="bg-gray-800/80 p-2 rounded-lg max-w-lg whitespace-pre-wrap text-sm text-cyan-300">{msg.text}</pre></div>;
+                return <div key={index} className="flex justify-start"><pre className="bg-gray-800/80 p-2 rounded-lg max-w-lg whitespace-pre-wrap text-sm text-cyan-300 font-mono">{msg.text}</pre></div>;
             case 'system':
                 return <div key={index} className="text-center text-yellow-400 text-xs italic py-2">--- {msg.text} ---</div>;
             default:

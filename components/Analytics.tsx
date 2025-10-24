@@ -12,6 +12,8 @@ import { AffiliateIcon } from './icons/AffiliateIcon';
 import { AffiliateIntelligence } from './AffiliateIntelligence';
 import { CoachIcon } from './icons/CoachIcon';
 import { AIContentCoach } from './AIContentCoach';
+import { InsightEngine } from './InsightEngine';
+import { InsightEngineIcon } from './icons/InsightEngineIcon';
 
 const AnalyticsCard: React.FC<{ title: string; children: React.ReactNode, className?: string }> = ({ title, children, className = "" }) => (
     <div className={`hud-border p-4 ${className}`}>
@@ -51,6 +53,7 @@ export const Analytics: React.FC = () => {
 
     const tabs = [
         { id: 'performance', label: t('analytics.tabPerformance'), icon: <AnalyticsIcon /> },
+        { id: 'insight', label: t('analytics.tabInsight'), icon: <InsightEngineIcon /> },
         { id: 'market', label: t('analytics.tabMarket'), icon: <SimulationIcon /> },
         { id: 'seo', label: t('analytics.tabSeo'), icon: <SeoIcon /> },
         { id: 'dual-income', label: t('analytics.tabDualIncome'), icon: <MoneyIcon /> },
@@ -60,6 +63,8 @@ export const Analytics: React.FC = () => {
 
     const renderContent = () => {
         switch (activeTab) {
+            case 'insight':
+                return <InsightEngine />;
             case 'market':
                 return <MarketSimulation initialTopic={initialTopic} onAnalysisComplete={() => setInitialTopic('')} />;
             case 'seo':

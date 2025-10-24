@@ -88,9 +88,11 @@
     "aiGeneratedPrompt": "Prompt do AI tạo",
     "downloadVideo": "Tải Video",
     "noJobSelected": "Chọn một công việc để xem chi tiết.",
+    "loadInEditor": "Mở trong Trình chỉnh sửa",
     "tabs": {
       "queue": "Hàng chờ Sản xuất",
-      "character": "Tạo nhân vật"
+      "character": "Tạo nhân vật",
+      "editor": "Trình chỉnh sửa AI"
     },
     "generating": {
       "enhancing": "Đang cải thiện prompt...",
@@ -107,6 +109,22 @@
         "backgroundLabel": "Nền",
         "generateButton": "Tạo 4 Hình ảnh",
         "generatingButton": "Đang tạo..."
+    },
+     "editor": {
+        "title": "Trình chỉnh sửa Video AI",
+        "uploadPrompt": "Tải lên một video",
+        "noVideo": "Tải lên một video hoặc chọn từ hàng chờ sản xuất để bắt đầu.",
+        "playbackSpeed": "Tốc độ phát",
+        "chapters": "Các chương",
+        "addChapter": "Thêm chương",
+        "addChapterPrompt": "Nhập tiêu đề chương:",
+        "effects": "Hiệu ứng AI",
+        "transitions": "Chuyển cảnh",
+        "music": "Nhạc nền",
+        "text": "Văn bản & Tiêu đề",
+        "aiPrompt": "Mô tả chỉnh sửa bạn muốn thực hiện...",
+        "apply": "Áp dụng với AI",
+        "devNotice": "Tính năng đang được phát triển."
     }
   },
   "resultDisplay": {
@@ -116,6 +134,7 @@
   },
   "analytics": {
     "tabPerformance": "Hiệu suất",
+    "tabInsight": "Công cụ Insight",
     "tabMarket": "Mô phỏng Thị trường",
     "tabSeo": "Nexus SEO",
     "tabDualIncome": "Săn Thu nhập Kép",
@@ -289,6 +308,19 @@
     "noAccounts": "Không có tài khoản nào được kết nối cho nền tảng này.",
     "edit": "Sửa",
     "addAccount": "Thêm Tài khoản Mới",
+    "affiliateLinkGenerator": {
+      "title": "Trình tạo Liên kết Affiliate AI",
+      "description": "Nhập mô tả thị trường ngách hoặc sản phẩm để tạo liên kết affiliate cho các nền tảng đã kết nối của bạn.",
+      "inputLabel": "Mô tả Niche / Sản phẩm",
+      "inputPlaceholder": "Ví dụ: 'Máy ảnh vlogging giá rẻ tốt nhất dưới 10 triệu'",
+      "platformsLabel": "Chọn Nền tảng",
+      "noPlatforms": "Chưa có nền tảng affiliate nào được kết nối. Thêm một vài nền tảng ở trên để bắt đầu.",
+      "generateButton": "Tạo Liên kết",
+      "generatingButton": "Đang tạo...",
+      "resultsTitle": "Liên kết đã tạo",
+      "copyButton": "Sao chép",
+      "copied": "Đã chép!"
+    },
     "linker": {
         "platformHeader": "Nền tảng",
         "usernameHeader": "Tên người dùng",
@@ -544,6 +576,44 @@
     "seoAnalysisFailed": "Phân tích SEO thất bại. Mô hình đã trả về phản hồi không mong muốn.",
     "generic": "Đã xảy ra lỗi không xác định với dịch vụ AI."
   },
+  "insightEngine": {
+    "title": "Công cụ Insight",
+    "description": "Phân tích bất kỳ kênh YouTube nào để khám phá DNA hiệu suất, công thức nội dung và các yếu tố lan truyền của họ. Sử dụng những hiểu biết này để tạo ra các chỉ thị chiến lược có thể hành động cho các đặc vụ của riêng bạn.",
+    "placeholder": "Nhập URL kênh YouTube (ví dụ: https://www.youtube.com/@MrBeast)",
+    "button": "Phân tích Kênh",
+    "buttonLoading": "Đang phân tích...",
+    "placeholderPrompt": "Nhập URL kênh để bắt đầu phân tích.",
+    "reportTitle": "Báo cáo Phân tích Kênh",
+    "thinking": {
+      "step1": "Bắt đầu Quét Kênh",
+      "step2": "Phân tích DNA Hiệu suất",
+      "step3": "Phân tích Công thức Nội dung",
+      "step4": "Xác định Yếu tố Lan truyền",
+      "step5": "Xây dựng Chỉ thị Chiến lược"
+    },
+    "tabDna": "DNA Hiệu suất",
+    "tabFormula": "Công thức Nội dung",
+    "tabVectors": "Yếu tố Lan truyền",
+    "tabDirectives": "Chỉ thị",
+    "dna": {
+      "subs": "Người đăng ký",
+      "views": "Lượt xem TB",
+      "engagement": "Tương tác"
+    },
+    "formula": {
+      "formats": "Định dạng Phổ biến",
+      "topics": "Cụm chủ đề",
+      "titles": "Mẫu Tiêu đề",
+      "thumbnails": "Tâm lý Thumbnail"
+    },
+    "vectors": {
+      "reason": "Lý do Thành công"
+    },
+    "directives": {
+      "rationale": "Lý do",
+      "sendToAgent": "Gửi đến Hàng chờ Đặc vụ"
+    }
+  },
   "automations": {
     "flow19": {
         "name": "Dây chuyền nội dung YouTube tự động",
@@ -640,6 +710,17 @@
       "step2": "Phân tích Hiệu suất Kém",
       "step3": "Kiểm tra Xu hướng",
       "step4": "Điều chỉnh Chiến lược"
+    },
+    "flow22": {
+      "name": "Lập lịch Nội dung Đa nền tảng",
+      "description": "Lấy kịch bản từ Google Drive, tạo video tối ưu cho YouTube, TikTok, và Instagram, sau đó lên lịch đăng bài.",
+      "step1": "Lấy Kịch bản từ Google Drive",
+      "step2": "Tạo Video YouTube (16:9)",
+      "step3": "Lên lịch đăng YouTube",
+      "step4": "Tạo Video TikTok (9:16)",
+      "step5": "Lên lịch đăng TikTok",
+      "step6": "Tạo Video Instagram (9:16)",
+      "step7": "Lên lịch đăng Instagram"
     }
   }
 }

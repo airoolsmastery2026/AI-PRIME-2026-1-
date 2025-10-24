@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Sidebar } from './components/Sidebar';
 import { Dashboard } from './components/Dashboard';
@@ -8,8 +7,7 @@ import { Analytics } from './components/Analytics';
 import { Agents } from './components/Agents';
 import { ContentMatrix } from './components/ContentMatrix';
 import { CommandNexus } from './components/CommandNexus';
-// FIX: Changed named import to default import for QuantumCoreControl.
-import QuantumCoreControl from './components/QuantumCoreControl';
+import { QuantumCoreControl } from './components/QuantumCoreControl';
 import { Accounts } from './components/Accounts';
 import { Pilot } from './components/Pilot';
 import { SystemMonitor } from './components/SystemMonitor';
@@ -17,11 +15,14 @@ import { Settings } from './components/Settings';
 import { CoreEditor } from './components/CoreEditor';
 import { MenuIcon } from './components/icons/MenuIcon';
 import { useSystem } from './contexts/SystemContext';
+import { AIChat } from './components/AIChat';
+import { ChatBubbleIcon } from './components/icons/ChatBubbleIcon';
 
 const App: React.FC = () => {
     const { user, login, logout } = useSystem();
     const [activeView, setActiveView] = useState('dashboard');
     const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 1024);
+    const [isChatOpen, setIsChatOpen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -81,6 +82,14 @@ const App: React.FC = () => {
                 </main>
             </div>
             <SystemMonitor />
+            <button
+                onClick={() => setIsChatOpen(true)}
+                className="fixed bottom-16 right-4 md:bottom-8 md:right-8 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-30 ai-chat-bubble"
+                aria-label="Open AI Assistant"
+            >
+                <ChatBubbleIcon />
+            </button>
+            <AIChat isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
         </div>
     );
 };
