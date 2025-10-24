@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from '../i18n/useTranslation';
 import { Chapter } from '../types';
 import { UploadIcon } from './icons/UploadIcon';
-// FIX: Add missing import for MagicWandIcon.
 import { MagicWandIcon } from './icons/MagicWandIcon';
 import { MusicNoteIcon } from './icons/MusicNoteIcon';
 import { FilmIcon } from './icons/FilmIcon';
