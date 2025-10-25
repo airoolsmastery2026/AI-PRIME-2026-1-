@@ -25,7 +25,7 @@ interface NavItemProps {
 
 const NavItem: React.FC<NavItemProps> = ({ icon, label, isActive, onClick }) => {
     const activeClasses = isActive
-        ? 'bg-cyan-400/10 text-cyan-300 border-l-4 border-cyan-300 shadow-[inset_3px_0_10px_0_rgba(56,189,248,0.3),0_0_15px_rgba(56,189,248,0.2)]'
+        ? 'bg-gradient-to-r from-cyan-400/20 to-cyan-400/5 text-cyan-300 border-l-4 border-cyan-300 shadow-[inset_3px_0_10px_0_rgba(56,189,248,0.3),0_0_15px_rgba(56,189,248,0.2)]'
         : 'text-gray-400 hover:bg-gray-700/50 hover:text-white';
 
     return (

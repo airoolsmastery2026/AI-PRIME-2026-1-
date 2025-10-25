@@ -4,7 +4,7 @@ import { useSystem } from '../contexts/SystemContext';
 import { testGeminiConnection } from '../services/geminiService';
 import { AccountCard } from './AccountCard';
 import { AccountConnector } from './AccountConnector';
-import { AffiliateLinkGenerator } from './AffiliateLinkGenerator';
+import { AffiliateLinkGenerator } from '../src/components/AffiliateLinkGenerator';
 
 // Icons
 import { YouTubeIcon } from './icons/YouTubeIcon';
